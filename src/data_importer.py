@@ -1,3 +1,6 @@
+"""
+This module is used for loading and preparing intents data
+"""
 import json
 
 import nltk
@@ -7,24 +10,29 @@ lemmatizer = WordNetLemmatizer
 
 
 def load_intents(path: str):
+    """
+    Loads a specified intents JSON file
+
+    :param path: Path to the intents file
+    :return: An Intents object
+    """
     try:
-        file = open(path)
-        intents = json.loads(file.read())
-        file.close()
+        with open(path) as file:
+            intents = json.loads(file.read())
 
-        words = []
-        classes = []
-        documents = []
+            words = []
+            classes = []
+            documents = []
 
-        for intent in intents['intents']:
-            for pattern in intent['patterns']:
-                word_list = nltk.word_tokenize(pattern)
-                words.append(word_list)
-                documents.append((word_list, intent['tag']))
-                if intent['tag'] not in classes:
-                    classes.append(intent['tag'])
+            for intent in intents['intents']:
+                for pattern in intent['patterns']:
+                    word_list = nltk.word_tokenize(pattern)
+                    words.append(word_list)
+                    documents.append((word_list, intent['tag']))
+                    if intent['tag'] not in classes:
+                        classes.append(intent['tag'])
 
-        return Intents(words, classes, documents)
+            return Intents(words, classes, documents)
 
     except FileNotFoundError:
         print("Intents file not found.")
@@ -32,6 +40,10 @@ def load_intents(path: str):
 
 
 class Intents:
+    """
+    A class containing the words, classes and documents information
+    loaded from an Intents JSON file.
+    """
 
     words: []
     classes: []
