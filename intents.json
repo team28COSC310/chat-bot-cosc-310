@@ -1,0 +1,70 @@
+{"intents":[
+    {"tag": "greetings",
+    "patterns":["hello", "hey", "hi", "good day", "greetings", "what's up", "how is it going?"],
+    "responses": ["Hello"]
+    },
+    {"tag":"farewell",
+    "patterns":["Thanks for your help, bye", "bye", "Thanks for your help", "Good bye"],
+    "responses":["Have a nice day", "I hope I could help, by", "Bye, hope to see you on Campus"]
+    },
+    {"tag":"opening hours",
+    "patterns":["When is the Univesity open", "when can I access the university"],
+    "responses":[]
+    },
+    {"tag":"semester dates",
+    "patterns":["When are the teaching times", "when are there lectures on campus", "When do courses start"],
+    "responses":["Universtity usually starts in September, with exams in december. And the second term starting in january with finals in April."]
+    },
+    {"tag":"sports teams",
+    "patterns":["Does UBC have sport teams", "What sport teams can I support", "Are there any sports to watch on campus"],
+    "responses":[]
+    }, 
+    {"tag":"gym",
+    "patterns":["Is there a gym on campus", "Can I work out at uni", "do you have a gym", "can I play sports on campus"],
+    "responses":[]
+    },
+    {"tag":"learning spaces",
+    "patterns":["Where can I study on campus", "do you have work places", "are there open study spaces" ],
+    "responses":[]
+    },
+    {"tag":"food",
+    "patterns":["Are there any foodplaces on campus", "What food is there on campus", "What if I am hungry"],
+    "responses":[]
+    },
+    {"tag":"library",
+    "patterns":["What are the opening hours of the library", "When does the library open", "When does the library close"],
+    "responses":[]
+    },
+    {"tag":"location",
+    "patterns":["Where is UBC located", "Where is UBCO located"],
+    "responses":[]
+    },
+    {"tag":"transfer",
+    "patterns":["How can I get to UBC", "How can I get to UBCO", "How to get to Kelowna from UBC"],
+    "responses":[]
+    },
+    {"tag":"number of students",
+    "patterns":["How many students does UBCO have", "Number of student at UBC"],
+    "responses":[]
+    },
+    {"tag":"other attractions",
+    "patterns":["What else can I do at UBC", "What can I do when not studying", "Are there any other fun things to do around"],
+    "responses":[]
+    },
+    {"tag":"application",
+    "patterns":["How can I apply to UBC", "Where can I apply"],
+    "responses":[]
+    },
+    {"tag":"history",
+    "patterns":["How old is UBC", "Tell me more about the history of UBC", ""],
+    "responses":[]
+    },
+    {"tag":"difference UBC Okanagan and Vancouver",
+    "patterns":["Is UBC Okanagan and Vancouver the same", "What is the differnce between UBC Okanagan and Vancouver", "Difference UBCO and UBC Vancouver"],
+    "responses":[]
+    },
+    {"tag":"weather",
+    "patterns":["How is the weather UBC", "Is it cold at UBC", "Is it raininf a lot at UBC"],
+    "responses":[]
+    }
+]}
