@@ -96,16 +96,47 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Dropout
 from tensorflow.keras.optimizers import SGD
 
-model = Sequential()
-model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(64, activation='relu'))
-model.add(Dropout(0.5))
-model.add(Dense(len(train_y[0]), activation='softmax'))
+class ChatModel:
+    def __init__(self):
+        # build/setup structure
+        self.model = Sequential()
+        self.model.add(Dense(128, input_shape=(len(train_x[0]),), activation='relu'))
+        self.model.add(Dropout(0.5))
+        self.model.add(Dense(64, activation='relu'))
+        self.model.add(Dropout(0.5))
+        self.model.add(Dense(len(train_y[0]), activation='softmax'))
 
-sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+        sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+        self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+    
+    def train(self, train_x, train_y, save_path):
+        sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
+        self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
+        self.model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
+        self.model.save_weights(save_path)
+    
+    def load_model_weights(self, path):
+        # load model and check for underlying architecture
+        self.model.load_weights(path)
+    
+    def predict(self, input):
+        prediction = self.model.predict(input)
+        return np.argmax(prediction)    
+        
+        
+chat_model = ChatModel()
+chat_model.train(train_x, train_y, './Test.h5')
 
-model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
-model.save('chatbot_model.model')
-print("Done")
+print(train_y[5])
+print("prediction")
+p = np.array(train_x[5])
+p = np.reshape(p, (1, 53))
+
+pred = chat_model.predict(p)
+print(pred)
+
+print("New Model")
+chat_model_1 = ChatModel()
+chat_model_1.load_model_weights('./Test.h5')
+pred = chat_model_1.predict(p)
+print(pred)
