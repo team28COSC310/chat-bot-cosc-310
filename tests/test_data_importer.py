@@ -13,10 +13,14 @@ class TestDataImporter(unittest.TestCase):
 
         result = load_intents(mock_path)
 
+        expected_words = ['pattern1', 'pattern2']
+        expected_documents = [(['pattern1'], 'mock'), (['pattern2'], 'mock')]
+        expected_classes = ['mock']
+
         self.assertIsInstance(result, Intents)
-        self.assertNotEqual(result.words, [])
-        self.assertNotEqual(result.documents, [])
-        self.assertNotEqual(result.classes, [])
+        self.assertEqual(result.words, expected_words)
+        self.assertEqual(result.documents, expected_documents)
+        self.assertEqual(result.classes, expected_classes)
 
     def test_load_intents_failure(self):
         mock_path = "invalid.json"

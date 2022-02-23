@@ -6,7 +6,7 @@ import json
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-lemmatizer = WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
 
 
 def load_intents(path: str):
@@ -27,7 +27,7 @@ def load_intents(path: str):
             for intent in intents['intents']:
                 for pattern in intent['patterns']:
                     word_list = nltk.word_tokenize(pattern)
-                    words.append(word_list)
+                    words.extend(word_list)
                     documents.append((word_list, intent['tag']))
                     if intent['tag'] not in classes:
                         classes.append(intent['tag'])
