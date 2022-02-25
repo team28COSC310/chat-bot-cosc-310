@@ -4,7 +4,7 @@ from data_importer import Intents, load_intents
 
 import numpy as np
 
-intents = load_intents("./intents_test.json")
+intents = load_intents("../intents_test.json")
 train_x, train_y = build_training_data(intents)
 
 chat_model = ChatModel(len(train_x[0]), len(train_y[0]))
