@@ -31,6 +31,32 @@ def load_intents(path: str):
                     documents.append((word_list, intent['tag']))
                     if intent['tag'] not in classes:
                         classes.append(intent['tag'])
+                        
+            words = [lemmatizer.lemmatize(word) for word in words if word not in ignore_letters]
+            words = sorted(set(words))
+
+            classes = sorted(set(classes))
+
+
+
+            training = []
+            output_empty = [0] * len(classes)
+
+            for doc in documents:
+                 bag = []
+                 word_patterns = doc[0]
+                 word_patterns = [lemmatizer.lemmatize(word.lower()) for word in word_patterns]
+                 for word in words:
+                     bag.append(1) if word in word_patterns else bag.append(0)
+
+                 output_row = list(output_empty)
+                 output_row[classes.index(doc[1])] = 1
+                 training.append([bag, output_row])
+
+             random.shuffle(training)
+             training = np.array(training)
+                        
+              
 
             return Intents(words, classes, documents)
 
