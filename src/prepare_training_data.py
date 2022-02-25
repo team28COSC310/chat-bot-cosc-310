@@ -17,7 +17,8 @@ def build_training_data(intents):
     words = intents.words
     classes = intents.classes
     documents = intents.documents
-
+    
+    # lemmatize words and ignore punctuation
     words = [lemmatizer.lemmatize(word) for word in words if word not in ignore_letters]
     words = sorted(set(words))
     pickle.dump(words, open('words.pkl', 'wb'))
@@ -27,7 +28,8 @@ def build_training_data(intents):
 
     training = []
     output_empty = [0] * len(classes)
-
+    
+    # encode word patterns
     for document in documents:
         bag = []
         word_patterns = document[0]
