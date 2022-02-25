@@ -1,0 +1,6 @@
+{"intents":[
+    {"tag": "mock",
+    "patterns":["pattern1","pattern2"],
+    "responses": ["success"]
+    }
+]}
