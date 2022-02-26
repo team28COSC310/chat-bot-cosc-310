@@ -33,7 +33,10 @@ class ChatModel:
         sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
         self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
         self.model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
-        self.model.save_weights(save_path)
+        #self.model.save_weights(save_path)
+        #Note: I could not run the chatbot while saving weights here, so I changed save_weights to save.
+        #Feel free to change it back if you know how to fix the chatbot issue.
+        self.model.save(save_path)
     
     def load_model_weights(self, path):
         '''
