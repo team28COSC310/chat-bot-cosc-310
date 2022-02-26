@@ -32,7 +32,7 @@ class ChatModel:
         '''
         sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
         self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
-        self.model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
+        self.model.fit(np.array(train_x), np.array(train_y), epochs=500, batch_size=5, verbose=1)
         #self.model.save_weights(save_path)
         #Note: I could not run the chatbot while saving weights here, so I changed save_weights to save.
         #Feel free to change it back if you know how to fix the chatbot issue.
@@ -49,4 +49,4 @@ class ChatModel:
         input = np.array(input)
         input = np.reshape(input, (1, self.input_shape))
         prediction = self.model.predict(input)
-        return np.argmax(prediction)    
+        return prediction   
