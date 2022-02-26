@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 nltk = "*"
+numpy = "*"
+tensorflow = "*"
+keras = "*"
 
 [dev-packages]
 pylint = "*"
