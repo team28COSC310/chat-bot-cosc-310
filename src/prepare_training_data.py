@@ -8,10 +8,6 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('omw-1.4')
-
 lemmatizer = WordNetLemmatizer()
 
 ignore_letters = ['?', '!', '.', ',']
