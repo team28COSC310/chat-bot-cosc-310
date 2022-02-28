@@ -1,7 +1,7 @@
 {"intents":[
     {"tag": "greetings",
     "patterns":["hello", "hey", "hi", "good day", "greetings", "what's up", "how is it going?"],
-    "responses": ["Hello", "Hi, how can I help you today?", "Hi"]
+    "responses": ["Hello, I am the UBCO Chatbot", "Hi, how can I help you today?", "Hello from UBCO, how can I help you?"]
     },
     {"tag":"farewell",
     "patterns":["Thanks for your help, bye", "bye", "Thanks for your help", "Good bye"],
@@ -56,7 +56,7 @@
     "responses":["The application deadline to UBC is usually mid January, please find further details here https://you.ubc.ca/applying-ubc/blog/how-to-apply/ubc-application-open/"]
     },
     {"tag":"history",
-    "patterns":["How old is UBC", "Tell me more about the history of UBC", ""],
+    "patterns":["How old is UBC", "Tell me more about the history of UBC"],
     "responses":["The Okanagan Campus, was opened in 2005. If you want to know more please take a look here: https://ok.ubc.ca/about/history-and-milestones/"]
     },
     {"tag":"difference UBC Okanagan and Vancouver",

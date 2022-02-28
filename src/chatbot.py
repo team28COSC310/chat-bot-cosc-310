@@ -11,13 +11,14 @@ from response_model import ChatModel
 from prepare_training_data import build_training_data
 from data_importer import Intents, load_intents
 
-words = pickle.load(open("words.pkl", "rb"))
-classes = pickle.load(open("classes.pkl", "rb"))
 
 intents = load_intents("../intents.json")
 train_x, train_y = build_training_data(intents)
 
 chat_model = ChatModel(len(train_x[0]), len(train_y[0]))
+
+words = pickle.load(open("words.pkl", "rb"))
+classes = pickle.load(open("classes.pkl", "rb"))
 
 # Load the Chatbot model, if there are no weights available, train the model
 try:
@@ -64,7 +65,6 @@ def predict_class(sentence):
     return_list=[]
     for r in results:
         return_list.append({'intent':classes[r[0]], 'probability':str(r[1])})
-    print(return_list)
     return return_list
 
 
