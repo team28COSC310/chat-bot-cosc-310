@@ -2,4 +2,5 @@
 disable=
     C0103, #invalid-name
     W1514, #unspecified-encoding
+    W0106, #expression-not-assigned
     R0903, #too-few-public-methods
