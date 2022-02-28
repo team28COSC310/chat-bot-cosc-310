@@ -64,7 +64,49 @@
     "responses":["The biggest difference between both the campuses is the size. UBCV is significantly larger school than UBCO. UBCV is home to about 60,000 students whereas UBCO is home to about 10,000 students. The rest of the differences stem from the size itself."]
     },
     {"tag":"weather",
-    "patterns":["How is the weather UBC", "Is it cold at UBC", "Is it raininf a lot at UBC"],
+    "patterns":["How is the weather UBC", "Is it cold at UBC", "Is it raining a lot at UBC"],
     "responses":["The weather in summer is pretty warm and dry and it can get pretty cold in the winters."]
-    }
-]}
+    },
+    {"tag":"Off-campus Food",
+    "patterns":["where can I eat off-campus ?", "where can I use my student meal plan off campus?", "off campus food locations"],
+    "responses":["The UBC Okanagan campus has multiple off campus dining partners which you can find at https://food.ok.ubc.ca/feed-me/  ."]
+    },
+     {"tag":"Tutoring ",
+    "patterns":["Does ubco offer tutoring services?", "where can I find tutors at ubco?"],
+    "responses":[" UBCO offers free tutoring services at the student learning hub which you can learn more about at https://students.ok.ubc.ca/academic-success/learning-hub/subject-tutoring/ ."]
+    },
+     {"tag":"on campus Housing",
+    "patterns":["What kind of housing is availible on campus ?", "where can I live on campus ?"],
+    "responses":["UBCO is home to 10 student residences including Cassiar, Kalamalka, Nicola, Purcell, Valhalla, Skeena , Nechako , Similkameen , Lower/Upper Cascades , and Monashee. You can learn more about the different residences at https://okanagan.housing.ubc.ca/residences-rooms/residences/"]
+    },
+      {"tag":"off campus Housing",
+    "patterns":["What kind of housing is availible off campus ?", "where can I live off campus ?"],
+    "responses":["There are plenty of places to rent off campus . Renting on Academy Way is a close option . Buildings such Veda Living , U Buildings , and IVY Hall are a popular choice . "]
+    },
+     {"tag":"minor",
+    "patterns":["What can I minor in?", "What are the requirements for a minor ?"],
+    "responses":["There are several minors you can specialize in by taking a specific concentration of courses. Each minor has a specific set of requirements which you can learn more about at https://fass.ok.ubc.ca/programs/undergraduate/ "]
+    },
+     {"tag":"getting involved",
+    "patterns":["How can I get involved on campus?", "What involvement opportunities are on campus ?"],
+    "responses":[" You can get involved on campus by volunteering , getting an on campus job , joining clubs , as well as course unions . Learn more about getting involved at https://students.ok.ubc.ca/involvement-activities/get-involved/  "]
+    },
+    {"tag":"facts",
+    "patterns":["What are some facts about UBCO ?", "What general information can I get about UBCO ?"],
+    "responses":["UBC is among the top 20 universities in the world . It has a good ratio of around 1 teacher for every 23 students. 17% of ubco students are international . You can find more ubco facts and information at https://ok.ubc.ca/about/facts-and-figures"]
+    },
+      {"tag":"Research ",
+    "patterns":["What are some research opportunities at ubco ?, How can I get involved with undergraduate research?"],
+    "responses":["Research opportunities include health research projects as well as the Tuum Est fund  which provides financial support for student initiatives, conferences, and competitions. Learn more about the fund at https://students.ok.ubc.ca/career-experience/get-experience/undergraduate-research/"]
+      },
+     {"tag":"Health and Wellness ",
+    "patterns":["What mental health resources are availible to students ? Does ubco offer counselling?"],
+    "responses":["UBCO offers free mental health counselling to students to help them deal with a variety of issues including anxiety , stress , panic, depression, or suicidal thoughts and feelings. Learn more at https://students.ok.ubc.ca/health-wellness/counselling-mental-health/ "]
+      },
+     {"tag":"Degree planning ",
+    "patterns":["How can I see which courses I need for my degree?", "Where can I get help with planning my degree?"],
+    "responses":[" The degree navigator which can be found on the ssc website offers guidance on planning your degree .it allows you to view program requirements , View course information as outlined in the UBC Okanagan Academic Calendar , evaluate your progress towards program requirements , and plan hypothetical course scenarios for future sessions. Learn more at https://students.ok.ubc.ca/academic-success/degree-planning/"]
+     }
+    
+    ]}
+    
