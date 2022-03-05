@@ -48,7 +48,7 @@ jobs:
       # The job will fail if the code has a rating under 8/10
       - name: Run PyLint
         run: |
-          pipenv run pylint src --fail-under=1
+          pipenv run pylint src --fail-under=8
 
       # Run all unit tests
       # Note: test file names MUST start with "test_" to be detected
