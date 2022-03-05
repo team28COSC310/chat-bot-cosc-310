@@ -1,6 +1,7 @@
 """
 This module is used for preparing intents data
 """
+import os
 import random
 import pickle
 import numpy as np
@@ -22,8 +23,8 @@ def build_training_data(intents):
     classes = sorted(set(intents.classes))
     documents = intents.documents
 
-    write_to_binary(words, 'words.pkl')
-    write_to_binary(classes, 'classes.pkl')
+    write_to_binary(words, 'pickle/words.pkl')
+    write_to_binary(classes, 'pickle/classes.pkl')
 
     training = encode_word_patterns(words, classes, documents)
 
@@ -91,5 +92,6 @@ def write_to_binary(info, file_name):
     :param info: data to write
     :param file_name: name of the file to write to
     """
+    os.makedirs(os.path.dirname(file_name), exist_ok=True)
     with open(file_name, 'wb') as file:
         pickle.dump(info, file)

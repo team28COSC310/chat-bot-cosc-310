@@ -24,13 +24,13 @@ train_x, train_y = build_training_data(intents)
 
 chat_model = ChatModel(len(train_x[0]), len(train_y[0]))
 
-words = pickle.load(open("words.pkl", "rb"))
-classes = pickle.load(open("classes.pkl", "rb"))
+words = pickle.load(open("pickle/words.pkl", "rb"))
+classes = pickle.load(open("pickle/classes.pkl", "rb"))
 
 # Load the Chatbot model, if there are no weights available, train the model
 try:
     chat_model.load_model_weights('./model_weights/weights.h5')
-except:
+except FileNotFoundError:
     chat_model.train(train_x, train_y, './model_weights/weights.h5')
 
 
