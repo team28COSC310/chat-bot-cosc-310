@@ -1,0 +1,58 @@
+name: CI
+
+# Triggers the workflow to run on pull request events
+on: [pull_request]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job named "CI"
+  CI:
+
+    # This job runs on an ubuntu virtual environment
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of events the job execute
+    steps:
+
+      # Checks-out the repository under $GITHUB_WORKSPACE
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Configures Python 3.10.0 on the virtual environment
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.0
+
+      # Installs pipenv
+      - name: Install pipenv
+        run: |
+          python -m pip install --upgrade pip
+          pip install pipenv
+
+      # Not entirely clear on how this step works, but it allows
+      # the environment to access the Pipfile for downloading the project dependencies
+      - id: cache-pipenv
+        uses: actions/cache@v1
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
+
+      # Install project dependencies using Pipenv
+      - name: Install dependencies
+        run: |
+          pipenv install --deploy --dev
+
+      # Run pylint
+      # The job will fail if the code has a rating under 8/10
+      - name: Run PyLint
+        run: |
+          pipenv run pylint src --fail-under=8
+
+      # Run all unit tests
+      # Note: test file names MUST start with "test_" to be detected
+      - name: Run Unit Tests
+        run: |
+          cd tests
+          pipenv run python -m unittest discover -s ./
