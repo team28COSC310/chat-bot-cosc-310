@@ -29,5 +29,5 @@ Run all tests from the `tests` directory.
 This ensures the mock files are located correctly by Python.
 
 ## Running the Application
-Run `python main.py` to start the application.
+Run `python chatbot.py` to start the application.
 
