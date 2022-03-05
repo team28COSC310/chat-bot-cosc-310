@@ -4,6 +4,9 @@ import sys
 
 sys.path.append(os.path.join(sys.path[0], '../src'))
 
+import nltk
+nltk.download('wordnet')
+
 from prepare_training_data import lemmatize_words, encode_word_patterns
 
 

@@ -3,6 +3,9 @@ import unittest
 import sys
 sys.path.append(os.path.join(sys.path[0], '../src'))
 
+import nltk
+nltk.download('wordnet')
+
 from data_importer import load_intents, Intents
 
 
