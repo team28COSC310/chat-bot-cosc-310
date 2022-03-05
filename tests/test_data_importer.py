@@ -5,6 +5,8 @@ sys.path.append(os.path.join(sys.path[0], '../src'))
 
 import nltk
 nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('omw-1.4')
 
 from data_importer import load_intents, Intents
 

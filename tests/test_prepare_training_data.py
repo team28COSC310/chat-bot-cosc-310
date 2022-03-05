@@ -6,6 +6,8 @@ sys.path.append(os.path.join(sys.path[0], '../src'))
 
 import nltk
 nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('omw-1.4')
 
 from prepare_training_data import lemmatize_words, encode_word_patterns
 
