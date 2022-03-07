@@ -79,6 +79,8 @@ def get_response(intents_list, intents_json):
     '''
     Generate a response of the bot, given the probable intents of a users and the list of all intents
     '''
+    if not intents_list:
+        return "Sorry, I do not understand you. Please, try rephrasing the question"
     tag = intents_list[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
