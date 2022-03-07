@@ -8,7 +8,6 @@ Acknowledgments:
 The gui is mostly based on a tutorial from Youtube: https://youtu.be/RNEcewpVZUQ
 """
 from tkinter import *
-from tkinter import scrolledtext  # scrolledtext widget only works if implemented explicitly
 from chatbot import get_response, predict_class  # the functions needed to generate bot's response
 from PIL import Image, ImageTk
 import json
@@ -26,6 +25,9 @@ FONT_MAIN = ("Roboto", 14)
 
 # Intents file, for bot to retrieve answers from it
 INTENTS = json.loads(open("../intents.json").read())
+
+# an array to guarantee proper alignment of responses
+DIAL_TAG = []
 
 
 class ChatApplication:
@@ -72,11 +74,14 @@ class ChatApplication:
         separator = Label(self.window, width=450, bg=DARK_BLUE)
         separator.place(relwidth=1, rely=0.07, relheight=0.01)
 
-        # text widget for a chat with the bot
-        self.chat_area = scrolledtext.ScrolledText(self.window, width=20, height=2, bg=WHITE, fg=BLACK,
-                                                   font=FONT_MAIN, padx=5, pady=8, wrap=WORD)
+        # chat area (with a scrollbar) for a chat with the bot
+        self.chat_area = Canvas(self.window, width=20, height=2, bg=WHITE, takefocus=1)
         self.chat_area.place(relheight=0.745, relwidth=1, rely=0.08)
-        self.chat_area.configure(cursor="arrow", state=DISABLED)
+        scrollbar = Scrollbar(self.chat_area)
+        scrollbar.place(relheight=1, relx=0.96)
+        scrollbar.configure(command=self.chat_area.yview)
+        self.chat_area.configure(yscrollcommand=scrollbar.set)
+        self.chat_area.bind_all("<MouseWheel>", self._on_mousewheel) #ensures what the scrollbar can be moved with a mouse wheel
 
         # bottom label
         bottom_label = Label(self.window, bg=DARK_BLUE, height=80)
@@ -92,6 +97,14 @@ class ChatApplication:
         send_button = Button(bottom_label, text="Send", font=FONT_HIGHLIGHT, width=20, bg=LIGHT_BLUE,
                              command=lambda: self._on_enter_pressed(None))
         send_button.place(relx=0.77, rely=0.018, relheight=0.04, relwidth=0.22)
+
+    def _on_mousewheel(self, event):
+        '''
+        Sets the Canvas yview_scroll parameter such that the Scrollbar attached to Canvas can be moved by the mouse wheel.
+        This solution is retrieved from: https://stackoverflow.com/questions/17355902/tkinter-binding-mousewheel-to-scrollbar
+        The solution works for Windows machines and is not guaranteed to work for other machines
+        '''
+        self.chat_area.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
     def _on_enter_pressed(self, event):
         '''
@@ -110,18 +123,58 @@ class ChatApplication:
 
         self.input_entry.delete(0, END)
 
-        msg1 = f"You: {msg}\n\n"
-        self.chat_area.configure(state=NORMAL)
-        self.chat_area.insert(END, msg1)
-        self.chat_area.configure(state=DISABLED)
+        msg1 = f"{msg}"
+        msg2 = f"{get_response(predict_class(msg), INTENTS)}"
+        if not DIAL_TAG:
+            y_coord_1 = 0
+        else:
+            y_coord_1 = self.chat_area.bbox(DIAL_TAG[0])[3]
+        user_text = self.chat_area.create_text(430, y_coord_1+34, text=msg1, anchor='ne', fill=BLACK, font=FONT_MAIN,
+                                               justify=RIGHT, width=280)
+        X01, Y01, X11, Y11 = self.chat_area.bbox(user_text)
+        self._round_rectangle(X01 - 14, Y01-4, X11+14, Y11+4, radius=20, fill=LIGHT_BLUE, outline=LIGHT_BLUE)
+        self.chat_area.tag_raise(user_text)
+        y_coord_2 = self.chat_area.bbox(user_text)[3]
+        bot_text = self.chat_area.create_text(25, y_coord_2+34, text=msg2, anchor='nw', fill=WHITE, font=FONT_MAIN,
+                                               width=280)
+        X02, Y02, X12, Y12 = self.chat_area.bbox(bot_text)
+        self._round_rectangle(X02-14, Y02-4, X12 + 14, Y12+4, radius=20, fill=DARK_BLUE, outline=DARK_BLUE)
+        self.chat_area.tag_raise(bot_text)
+        if not DIAL_TAG:
+            DIAL_TAG.append(bot_text)
+        else:
+            DIAL_TAG[0]=bot_text
+        self.chat_area.configure(scrollregion=self.chat_area.bbox("all")) #ensures the context of our chat area is actually scrollable
+        self.chat_area.yview_moveto('1.0') #always show the end of the dialogue
 
-        msg2 = f"UBCO: {get_response(predict_class(msg), INTENTS)}\n\n"
-        self.chat_area.configure(state=NORMAL)
-        self.chat_area.insert(END, msg2)
-        self.chat_area.configure(state=DISABLED)
+    def _round_rectangle(self, x1, y1, x2, y2, radius=25, **kwargs):
+        '''
+        Creates a rectangle with rounded borders inside chat area.
+        The solution is retrieved from: https://stackoverflow.com/questions/44099594/how-to-make-a-tkinter-canvas-rectangle-with-rounded-corners
+        '''
 
-        self.chat_area.see(END)
+        points = [x1 + radius, y1,
+                  x1 + radius, y1,
+                  x2 - radius, y1,
+                  x2 - radius, y1,
+                  x2, y1,
+                  x2, y1 + radius,
+                  x2, y1 + radius,
+                  x2, y2 - radius,
+                  x2, y2 - radius,
+                  x2, y2,
+                  x2 - radius, y2,
+                  x2 - radius, y2,
+                  x1 + radius, y2,
+                  x1 + radius, y2,
+                  x1, y2,
+                  x1, y2 - radius,
+                  x1, y2 - radius,
+                  x1, y1 + radius,
+                  x1, y1 + radius,
+                  x1, y1]
 
+        self.chat_area.create_polygon(points, **kwargs, smooth=True)
 
 if __name__ == "__main__":
     app_gui = ChatApplication()
