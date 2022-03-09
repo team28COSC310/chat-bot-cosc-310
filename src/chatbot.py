@@ -8,97 +8,97 @@ Nicholas Brown, Jonathan Chou, Omar Ishtaiwi, Niklas Tecklenburg and Elizaveta Z
 import random
 import json
 import pickle
-import nltk
-from nltk.stem import WordNetLemmatizer
+import numpy as np
 
 from response_model import ChatModel
 from prepare_training_data import build_training_data
-from data_importer import load_intents
+from data_importer import Intents, load_intents
+
+import nltk
+from nltk.stem import WordNetLemmatizer
 
 
-lemmatizer = WordNetLemmatizer()
+class Chat:
+    def __init__(self):
+        self.lemmatizer = WordNetLemmatizer()
 
-intents = load_intents("../intents.json")
-train_x, train_y = build_training_data(intents)
+        self.intents = load_intents("../intents.json")
+        self.train_x, self.train_y = build_training_data(self.intents)
 
-chat_model = ChatModel(len(train_x[0]), len(train_y[0]))
+        self.chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
 
-with(open("pickle/words.pkl", "rb")) as pickle_words:
-    words = pickle.load(pickle_words)
+        self.words = pickle.load(open("words.pkl", "rb"))
+        self.classes = pickle.load(open("classes.pkl", "rb"))
 
-with(open("pickle/classes.pkl", "rb")) as pickle_classes:
-    classes = pickle.load(pickle_classes)
-
-# Load the Chatbot model, if there are no weights available, train the model
-try:
-    chat_model.load_model_weights('./model_weights/weights.h5')
-except FileNotFoundError:
-    chat_model.train(train_x, train_y, './model_weights/weights.h5')
-
-
-def preprocess_sentence(sentence):
-    """
-    Tokenize the sentence entered by user into words, delete punctuation signs and lemmatize
-    """
-    ignore_letters = ['?', '!', '.', ',']
-    sent_words = nltk.word_tokenize(sentence)
-    sent_words = [lemmatizer.lemmatize(word) for word in sent_words if word not in ignore_letters]
-    return sent_words
+        # Load the Chatbot model, if there are no weights available, train the model
+        try:
+            self.chat_model.load_model_weights('./model_weights/weights.h5')
+        except:
+            self.chat_model.train(self.train_x, self.train_y, './model_weights/weights.h5')
 
 
-def bag_words(sentence):
-    """
-    Create the bag of words representation of a sentence.
-    That is, identify which words from our intents file are present in the users' sentence
-    """
-    sent_words = preprocess_sentence(sentence)
-    # bag=np.zeros(len(intents.words))
-    bag = [0] * len(words)
-    for sw in sent_words:
-        for i, word in enumerate(words):
-            if word == sw:
-                bag[i] = 1
-    return bag
+    def preprocess_sentence(self, sentence):
+        '''
+        Tokenize the sentence entered by user into words, delete punctuation signs and lemmatize
+        '''
+        ignore_letters = ['?', '!', '.', ',']
+        sent_words = nltk.word_tokenize(sentence)
+        sent_words = [self.lemmatizer.lemmatize(word) for word in sent_words if word not in ignore_letters]
+        return sent_words
 
 
-def predict_class(sentence):
-    """
-    Predict the class (intent) of a users' sentence
-    """
-    bow = bag_words(sentence)
-    res = chat_model.predict(bow)[0]
-    err_border = 0.3
-    results = [[i, r] for i, r in enumerate(res) if r > err_border]
-    # Sort by probability in reverse order
-    results.sort(key=lambda x: x[1], reverse=True)
-    return_list = []
-    for r in results:
-        return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
-    return return_list
+    def bag_words(self, sentence):
+        '''
+        Create the bag of words representation of a sentence.
+        That is, identify which words from our intents file are present in the users' sentence
+        '''
+        sent_words = self.preprocess_sentence(sentence)
+        # bag=np.zeros(len(intents.words))
+        bag = [0] * len(self.words)
+        for sw in sent_words:
+            for i, word in enumerate(self.words):
+                if word == sw:
+                    bag[i] = 1
+        return bag
 
 
-def get_response(intents_list, intents_json):
-    """
-    Generate a response of the bot,
-    given the probable intents of a users and the list of all intents
-    """
-    tag = intents_list[0]['intent']
-    list_of_intents = intents_json['intents']
-    for i in list_of_intents:
-        if i['tag'] == tag:
-            result = random.choice(i['responses'])
-            break
-    return result
+    def predict_class(self, sentence):
+        '''
+        Predict the class (intent) of a users' sentence
+        '''
+        bow = self.bag_words(sentence)
+        res = self.chat_model.predict(bow)[0]
+        err_border = 0.3
+        results = [[i, r] for i, r in enumerate(res) if r > err_border]
+        # Sort by probability in reverse order
+        results.sort(key=lambda x: x[1], reverse=True)
+        return_list = []
+        for r in results:
+            return_list.append({'intent': self.classes[r[0]], 'probability': str(r[1])})
+        return return_list
+
+
+    def get_response(self, intents_list, intents_json):
+        '''
+        Generate a response of the bot, given the probable intents of a users and the list of all intents
+        '''
+        tag = intents_list[0]['intent']
+        list_of_intents = intents_json['intents']
+        for i in list_of_intents:
+            if i['tag'] == tag:
+                result = random.choice(i['responses'])
+                break
+        return result
 
 
 if __name__ == '__main__':
-    with(open("../intents.json")) as ints_json:
-        intents = json.loads(ints_json.read())
+    chat = Chat()
+    intents = json.loads(open("../intents.json").read())
     print("You can start talking to the bot now. If you want to stop the bot, type `stop`")
     while True:
         message = input("")
         if message.lower() == 'stop':
             break
-        ints = predict_class(message)
-        response = get_response(ints, intents)
-        print(response)
+        ints = chat.predict_class(message)
+        res = chat.get_response(ints, intents)
+        print(res)
