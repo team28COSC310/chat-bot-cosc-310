@@ -8,17 +8,18 @@ Nicholas Brown, Jonathan Chou, Omar Ishtaiwi, Niklas Tecklenburg and Elizaveta Z
 import random
 import json
 import pickle
-import numpy as np
-
-from response_model import ChatModel
-from prepare_training_data import build_training_data
-from data_importer import Intents, load_intents
-
 import nltk
 from nltk.stem import WordNetLemmatizer
 
+from response_model import ChatModel
+from prepare_training_data import build_training_data
+from data_importer import load_intents
+
 
 class Chat:
+    """
+    Chatbot
+    """
     def __init__(self):
         self.lemmatizer = WordNetLemmatizer()
 
@@ -27,15 +28,17 @@ class Chat:
 
         self.chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
 
-        self.words = pickle.load(open("pickle/words.pkl", "rb"))
-        self.classes = pickle.load(open("pickle/classes.pkl", "rb"))
+        with(open("pickle/words.pkl", "rb")) as word_file:
+            self.words = pickle.load(word_file)
+
+        with(open("pickle/classes.pkl", "rb")) as class_file:
+            self.classes = pickle.load(class_file)
 
         # Load the Chatbot model, if there are no weights available, train the model
         try:
             self.chat_model.load_model_weights('./model_weights/weights.h5')
-        except:
+        except FileNotFoundError:
             self.chat_model.train(self.train_x, self.train_y, './model_weights/weights.h5')
-
 
     def preprocess_sentence(self, sentence):
         '''
@@ -46,21 +49,18 @@ class Chat:
         sent_words = [self.lemmatizer.lemmatize(word) for word in sent_words if word not in ignore_letters]
         return sent_words
 
-
     def bag_words(self, sentence):
         '''
         Create the bag of words representation of a sentence.
         That is, identify which words from our intents file are present in the users' sentence
         '''
         sent_words = self.preprocess_sentence(sentence)
-        # bag=np.zeros(len(intents.words))
         bag = [0] * len(self.words)
         for sw in sent_words:
             for i, word in enumerate(self.words):
                 if word == sw:
                     bag[i] = 1
         return bag
-
 
     def predict_class(self, sentence):
         '''
@@ -77,7 +77,6 @@ class Chat:
             return_list.append({'intent': self.classes[r[0]], 'probability': str(r[1])})
         return return_list
 
-
     def get_response(self, intents_list, intents_json):
         '''
         Generate a response of the bot, given the probable intents of a users and the list of all intents
@@ -93,7 +92,8 @@ class Chat:
 
 if __name__ == '__main__':
     chat = Chat()
-    intents = json.loads(open("../intents.json").read())
+    with(open("../intents.json")) as intents_file:
+        intents = json.loads(intents_file.read())
     print("You can start talking to the bot now. If you want to stop the bot, type `stop`")
     while True:
         message = input("")
