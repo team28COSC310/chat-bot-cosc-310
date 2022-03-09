@@ -8,7 +8,7 @@ Acknowledgments:
 The gui is mostly based on a tutorial from Youtube: https://youtu.be/RNEcewpVZUQ
 """
 from tkinter import *
-from chatbot import get_response, predict_class  # the functions needed to generate bot's response
+from chatbot import Chat  # the class containing functions needed to generate bot's response
 from PIL import Image, ImageTk
 import json
 
@@ -122,9 +122,9 @@ class ChatApplication:
             return
 
         self.input_entry.delete(0, END)
-
+        chat=Chat()
         msg1 = f"{msg}"
-        msg2 = f"{get_response(predict_class(msg), INTENTS)}"
+        msg2 = f"{chat.get_response(chat.predict_class(msg), INTENTS)}"
         if not DIAL_TAG:
             y_coord_1 = 0
         else:
