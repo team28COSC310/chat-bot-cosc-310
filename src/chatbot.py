@@ -27,8 +27,8 @@ class Chat:
 
         self.chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
 
-        self.words = pickle.load(open("words.pkl", "rb"))
-        self.classes = pickle.load(open("classes.pkl", "rb"))
+        self.words = pickle.load(open("pickle/words.pkl", "rb"))
+        self.classes = pickle.load(open("pickle/classes.pkl", "rb"))
 
         # Load the Chatbot model, if there are no weights available, train the model
         try:
