@@ -15,7 +15,7 @@
     "patterns":["When are the teaching times", "when are there lectures on campus", "When do courses start"],
     "responses":["Universtity usually starts in September, with exams in december. And the second term starting in january with finals in April."]
     },
-    {"tag":"sports teams",
+    {"tag":"sports teapms",
     "patterns":["Does UBC have sport teams", "What sport teams can I support", "Are there any sports to watch on campus"],
     "responses":["UBC Okanagans sport teams called HEAT, have football, basketball, volleyball and golf teams for man and woman as well as a softball team"]
     }, 
