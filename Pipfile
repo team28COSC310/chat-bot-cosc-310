@@ -8,6 +8,7 @@ nltk = "*"
 numpy = "*"
 tensorflow = "*"
 keras = "*"
+pillow = "*"
 
 [dev-packages]
 pylint = "*"
