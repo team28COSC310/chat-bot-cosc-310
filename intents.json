@@ -8,8 +8,20 @@
     "responses":["Have a nice day", "I hope I could help, by", "Bye, hope to see you on Campus"]
     },
     {"tag":"opening hours",
-    "patterns":["When is the Univesity open", "when can I access the university"],
-    "responses":["The opening hours of the university vary, depending on where you want to go. The Commons are always open if you want to study, why don't you have a look at our website (https://finance-operations.ok.ubc.ca/corm/building-hours/)"]
+    "patterns":["When is open", "when can I access", "When does open", "when does close", "how long can I be in", "are there limited hours"],
+    "responses":["Detailed opening hours coming here soon..."]
+    },
+    {"tag":"more informations",
+    "patterns":["Where can I find more infos on", "Can you share more infos on", "I want to know more about", "I am interested in learning more about"],
+    "responses":["Detailed links coming here soon..."]
+    },
+    {"tag":"location info",
+    "patterns":["Where can I find", "where is the", "Where is", "what is the location of"],
+    "responses":["Detailed location infos coming here soon..."]
+    },
+    {"tag":"contact info",
+    "patterns":["How can I reach out to", "I have questions regarding", "Can you give me the contact of", "Who would I have to reach out to with questions regarding"],
+    "responses":["Detailed contact infos coming here soon..."]
     },
     {"tag":"semester dates",
     "patterns":["When are the teaching times", "when are there lectures on campus", "When do courses start"],
@@ -30,14 +42,6 @@
     {"tag":"food",
     "patterns":["Are there any foodplaces on campus", "What food is there on campus", "What if I am hungry"],
     "responses":["The campus offers a variety of cafes and foodplaces, like tim hortons, starbucks or a sushi place. We also have a big dining hall. Check it out here: https://food.ok.ubc.ca"]
-    },
-    {"tag":"library",
-    "patterns":["What are the opening hours of the library", "When does the library open", "When does the library close"],
-    "responses":["The library is open from 8 to weekdays and from 10 to 6 on weekends."]
-    },
-    {"tag":"location",
-    "patterns":["Where is UBC located", "Where are you",  "Where is it"],
-    "responses":["UBCO is located at Lake Okanagan near Kelowna"]
     },
     {"tag":"transfer",
     "patterns":["How can I get to UBC", "How can I get to UBCO", "How to get to Kelowna from UBC"],
