@@ -40,6 +40,7 @@ class ChatApplication:
         Build and setup the interface window
         '''
         self.window = Tk()
+        self.chat = Chat()
         self._setup_main_window()
 
     def run(self):
@@ -122,9 +123,8 @@ class ChatApplication:
             return
 
         self.input_entry.delete(0, END)
-        chat=Chat()
         msg1 = f"{msg}"
-        msg2 = f"{chat.get_response(chat.predict_class(msg), INTENTS)}"
+        msg2 = f"{self.chat.get_response(self.chat.predict_class(msg), INTENTS)}"
         if not DIAL_TAG:
             y_coord_1 = 0
         else:
