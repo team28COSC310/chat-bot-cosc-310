@@ -15,6 +15,12 @@ from response_model import ChatModel
 from prepare_training_data import build_training_data
 from data_importer import load_intents
 
+#5 versions of apologies in case the bot cannot identify user's request and therefore cannot reply
+APOLOGIES=["Sorry, I do not understand you. Please, try rephrasing the question using synonyms or simpler words",
+           "Sorry, I cannot seem to comprehend what you are saying. Try asking me about the dining places, or the weather",
+           "My apologies, I do not understand your question. Try asking me about the sport events at campus or UBCO history",
+           "I apologize for the incovenience, but I do not understand you. \nPlease, try rephrasing your request. \nFor example instead of asking 'Where can I get some food on campus?' ask 'I am hungry, where do I go?'",
+           "I am very sorry but I do not understand you. \nCheck out UBCO FAQ, you might find an answer to your question there: https://students.ok.ubc.ca/academic-success/academic-advising/frequently-asked-questions/"]
 
 class Chat:
     """
@@ -82,7 +88,7 @@ class Chat:
         Generate a response of the bot, given the probable intents of a users and the list of all intents
         '''
         if not intents_list:
-            return "Sorry, I do not understand you. Please, try rephrasing the question"
+            return random.choice(APOLOGIES)
         tag = intents_list[0]['intent']
         list_of_intents = intents_json['intents']
         for i in list_of_intents:
