@@ -13,7 +13,7 @@ from nltk.stem import WordNetLemmatizer
 
 from response_model import ChatModel
 from prepare_training_data import build_training_data
-from data_importer import load_intents
+from data_importer import load_intents, load_entities
 
 
 class Chat:
@@ -25,6 +25,8 @@ class Chat:
 
         self.intents = load_intents("../intents.json")
         self.train_x, self.train_y = build_training_data(self.intents)
+        
+        self.entity_infos = load_entities('../entity_infos.json')
 
         self.chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
 
@@ -84,11 +86,21 @@ class Chat:
         if not intents_list:
             return "Sorry, I do not understand you. Please, try rephrasing the question"
         tag = intents_list[0]['intent']
-        list_of_intents = intents_json['intents']
-        for i in list_of_intents:
-            if i['tag'] == tag:
-                result = random.choice(i['responses'])
-                break
+        
+        if tag == "opening hours":
+           result = 'Test'
+        elif tag =="more informations":
+            result = 'Test'
+        elif tag == "location info":
+            result = 'Test'
+        elif tag =="contact info":
+            result = 'Test'
+        else:
+            list_of_intents = intents_json['intents']
+            for i in list_of_intents:
+                if i['tag'] == tag:
+                    result = random.choice(i['responses'])
+                    break
         return result
 
 
