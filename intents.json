@@ -106,7 +106,11 @@
      {"tag":"Degree planning ",
     "patterns":["How can I see which courses I need for my degree?", "Where can I get help with planning my degree?"],
     "responses":[" The degree navigator which can be found on the ssc website offers guidance on planning your degree .it allows you to view program requirements , View course information as outlined in the UBC Okanagan Academic Calendar , evaluate your progress towards program requirements , and plan hypothetical course scenarios for future sessions. Learn more at https://students.ok.ubc.ca/academic-success/degree-planning/"]
-     }
+     },
+    {"tag": "Safety",
+    "patterns": ["Then I am on campus I do not feel safe walking alone at night, what do I do?", "I do not feel secure on campus, I am worried about stealing or other crimes,  what do I do?", "I am worried about safety protocols on campus, how do I find out whether students are protected enough?", "Please, tell me how UBCO ensures safety and security on campus, I am worried about possible crimes"],
+    "responses": ["UBCO treats the safety of its students as its top priority. There are always guards monitoring the situation on campus. You can see them near the administration building. UBCO also offers Safewalk Services in case you are afraid of walking alone at night. To find out more, visit: https://security.ok.ubc.ca/safewalk/. If you are concerned about general security or want to report a crime, visit: https://security.ok.ubc.ca/"]
+    }
     
     ]}
     
