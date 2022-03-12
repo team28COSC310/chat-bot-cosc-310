@@ -14,16 +14,19 @@ from nltk.stem import WordNetLemmatizer
 from response_model import ChatModel
 from prepare_training_data import build_training_data
 from data_importer import load_intents
+from spellchecker import SpellChecker
 
 
 class Chat:
     """
     Chatbot
     """
+
     def __init__(self):
         self.lemmatizer = WordNetLemmatizer()
 
         self.intents = load_intents("../intents.json")
+        self.spellchecker = SpellChecker()
         self.train_x, self.train_y = build_training_data(self.intents)
 
         self.chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
@@ -66,6 +69,11 @@ class Chat:
         '''
         Predict the class (intent) of a users' sentence
         '''
+
+        print("Entered:", sentence)
+        sentence = self.spellchecker.autocorrect(sentence)
+        print("Interpreted:", sentence)
+
         bow = self.bag_words(sentence)
         res = self.chat_model.predict(bow)[0]
         err_border = 0.3
@@ -90,7 +98,6 @@ class Chat:
                 result = random.choice(i['responses'])
                 break
         return result
-
 
 
 if __name__ == '__main__':

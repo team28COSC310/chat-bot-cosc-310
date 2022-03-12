@@ -4,9 +4,6 @@ This module is used for loading and preparing intents data
 import json
 
 import nltk
-from nltk.stem import WordNetLemmatizer
-
-lemmatizer = WordNetLemmatizer()
 
 
 def load_intents(path: str):
