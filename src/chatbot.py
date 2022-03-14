@@ -14,19 +14,31 @@ from nltk.stem import WordNetLemmatizer
 
 from response_model import ChatModel
 from prepare_training_data import build_training_data
+<<<<<<< HEAD
 from data_importer import load_intents, load_entities
 
 from test_NER import find_NER
+from data_importer import load_intents
+from spellchecker import SpellChecker
 
+
+#5 versions of apologies in case the bot cannot identify user's request and therefore cannot reply
+APOLOGIES=["Sorry, I do not understand you. Please, try rephrasing the question using synonyms or simpler words",
+           "Sorry, I cannot seem to comprehend what you are saying. Try asking me about the dining places, or the weather",
+           "My apologies, I do not understand your question. Try asking me about the sport events at campus or UBCO history",
+           "I apologize for the incovenience, but I do not understand you. \nPlease, try rephrasing your request. \nFor example instead of asking 'Where can I get some food on campus?' ask 'I am hungry, where do I go?'",
+           "I am very sorry but I do not understand you. \nCheck out UBCO FAQ, you might find an answer to your question there: https://students.ok.ubc.ca/academic-success/academic-advising/frequently-asked-questions/"]
 
 class Chat:
     """
     Chatbot
     """
+
     def __init__(self):
         self.lemmatizer = WordNetLemmatizer()
 
         self.intents = load_intents("../intents.json")
+        self.spellchecker = SpellChecker()
         self.train_x, self.train_y = build_training_data(self.intents)
         
         self.entity_infos = load_entities('../entity_infos.json')
@@ -71,6 +83,11 @@ class Chat:
         '''
         Predict the class (intent) of a users' sentence
         '''
+
+        print("Entered:", sentence)
+        sentence = self.spellchecker.autocorrect(sentence)
+        print("Interpreted:", sentence)
+
         bow = self.bag_words(sentence)
         res = self.chat_model.predict(bow)[0]
         err_border = 0.3
@@ -87,7 +104,7 @@ class Chat:
         Generate a response of the bot, given the probable intents of a users and the list of all intents
         '''
         if not intents_list:
-            return "Sorry, I do not understand you. Please, try rephrasing the question"
+            return random.choice(APOLOGIES)
         tag = intents_list[0]['intent']
         
         
@@ -132,7 +149,6 @@ class Chat:
                     result = random.choice(i['responses'])
                     break
         return result
-
 
 
 if __name__ == '__main__':
