@@ -5,6 +5,7 @@ Created by:
 Nicholas Brown, Jonathan Chou, Omar Ishtaiwi, Niklas Tecklenburg and Elizaveta Zhukova
 """
 
+from email import message_from_binary_file
 import random
 import json
 import pickle
@@ -14,6 +15,8 @@ from nltk.stem import WordNetLemmatizer
 from response_model import ChatModel
 from prepare_training_data import build_training_data
 from data_importer import load_intents, load_entities
+
+from test_NER import find_NER
 
 
 class Chat:
@@ -79,7 +82,7 @@ class Chat:
             return_list.append({'intent': self.classes[r[0]], 'probability': str(r[1])})
         return return_list
 
-    def get_response(self, intents_list, intents_json):
+    def get_response(self, intents_list, intents_json, ents):
         '''
         Generate a response of the bot, given the probable intents of a users and the list of all intents
         '''
@@ -87,14 +90,41 @@ class Chat:
             return "Sorry, I do not understand you. Please, try rephrasing the question"
         tag = intents_list[0]['intent']
         
-        if tag == "opening hours":
-           result = 'Test'
-        elif tag =="more informations":
-            result = 'Test'
-        elif tag == "location info":
-            result = 'Test'
-        elif tag =="contact info":
-            result = 'Test'
+        
+        if tag in ["opening hours", "more information", "location info", "contact info"]:
+            ent_matches = []
+            for ent in ents:
+                if ent in self.entity_infos.keys():
+                    ent_matches.append(ent)
+            if len(ent_matches)>0:
+                entity = random.choice(ent_matches)
+            else:
+                entity = []
+                
+            if tag == "opening hours":
+                if entity ==[]:
+                    result = f"I am really sorry but I do not have infos on the opening hours for the {random.choice(ents)}"
+                else:
+                    info = self.entity_infos[entity]["opening hours"]
+                    result = f"The opening hours for the {entity} are {info}."
+            elif tag =="more information":
+                if entity ==[]:
+                    result = f"I am really sorry but I do not have further infos on the {random.choice(ents)}"
+                else:
+                    info = self.entity_infos[entity]["link"]
+                    result = f"You can find more infos on the {entity} here: {info}"
+            elif tag == "location info":
+                if entity ==[]:
+                    result = f"I am really sorry but I do not have location infos for the {random.choice(ents)}"
+                else:
+                    info = self.entity_infos[entity]["location"]
+                    result = f"The {entity} is located here: {info}"
+            elif tag =="contact info":
+                if entity ==[]:
+                    result = f"I am really sorry but I do not have contact infos {random.choice(ents)}"
+                else:
+                    info = self.entity_infos[entity]["contact"]
+                    result = f"You can reach out to the {entity} here: {info}"
         else:
             list_of_intents = intents_json['intents']
             for i in list_of_intents:
@@ -115,5 +145,9 @@ if __name__ == '__main__':
         if message.lower() == 'stop':
             break
         ints = chat.predict_class(message)
-        res = chat.get_response(ints, intents)
+        ents = find_NER(message)
+        # add nouns found in the sentence
+        # nouns = findNN(message)
+        # ents.extend(nouns)
+        res = chat.get_response(ints, intents, ents)
         print(res)

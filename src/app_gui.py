@@ -9,6 +9,7 @@ The gui is mostly based on a tutorial from Youtube: https://youtu.be/RNEcewpVZUQ
 """
 from tkinter import *
 from chatbot import Chat  # the class containing functions needed to generate bot's response
+from test_NER import find_NER
 from PIL import Image, ImageTk
 import json
 
@@ -124,7 +125,7 @@ class ChatApplication:
 
         self.input_entry.delete(0, END)
         msg1 = f"{msg}"
-        msg2 = f"{self.chat.get_response(self.chat.predict_class(msg), INTENTS)}"
+        msg2 = f"{self.chat.get_response(self.chat.predict_class(msg), INTENTS, find_NER(msg))}"
         if not DIAL_TAG:
             y_coord_1 = 0
         else:

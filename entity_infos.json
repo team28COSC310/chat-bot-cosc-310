@@ -1,0 +1,51 @@
+{"entities":[
+    {"entity": "library",
+    "opening hours":"8 to 8 on weekdays and 10 to 6 on weekends",
+    "location":"3287 University Way",
+	"contact":"Tel: 250 807 9107, Mail: libquestions.ok@ubc.ca",
+	"link":"https://library.ok.ubc.ca/spaces/library/"
+    },
+    {"entity": "commons",
+    "opening hours":"24/7",
+    "location":"3297 University Way",
+	"contact":"Tel: 250 807 9107, Mail: libquestions.ok@ubc.ca",
+	"link":"https://library.ok.ubc.ca/spaces/the-commons/"
+    },
+    {"entity": "gym",
+    "opening hours":"6 to 10 on weekdays and 8 to 8 on weekends",
+    "location":"3211 Athletics Court",
+	"contact":"Mail: recreation.okanagan@ubc.ca",
+	"link":"https://recreation.ok.ubc.ca/facilities/gymnasium/"
+    },
+    {"entity": "hangar",
+    "opening hours":"6 to 10 on weekdays and 8 to 8 on weekends",
+    "location":"3211 Athletics Court",
+    "contact":"Mail: recreation.okanagan@ubc.ca",
+    "link":"https://recreation.ok.ubc.ca/facilities/gymnasium/"
+    },
+    {"entity": "Front Desk",
+    "opening hours":"24/7",
+    "location":"1255 International Mews",
+	"contact":"Tel: 250-807-8050, Mail: information@housing.okanagan.ubc.ca",
+	"link":"https://okanagan.housing.ubc.ca/contact-us/"
+    },
+    {"entity": "Nechako Dinning Hall",
+    "opening hours":"7 to 11 every day",
+    "location":"1138 Alumni Ave",
+	"contact":"Tel: 250-807-9208, Mail: ubco.food@ubc.ca",
+	"link":"https://food.ok.ubc.ca/meal-plans/nechako/"
+    },
+    {"entity": "Sunshine",
+    "opening hours":"8 to 5 on weekdays, closed on weekends",
+    "location":"138 Alumni Ave",
+	"contact":"Tel: 250-807-9208, Mail: ubco.food@ubc.ca",
+	"link":"https://food.ok.ubc.ca/places/sunshine/"
+    },
+    {"entity": "Starbucks",
+    "opening hours":"7:30 to 2 on weekdays, closed on weekends",
+    "location":"3333 University Way",
+	"contact":"Tel: 250-807-8837",
+	"link":"https://food.ok.ubc.ca/places/starbucks/"
+    }
+]}
+    

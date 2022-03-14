@@ -8,15 +8,15 @@
     "responses":["Have a nice day", "I hope I could help, by", "Bye, hope to see you on Campus"]
     },
     {"tag":"opening hours",
-    "patterns":["When is open", "when can I access", "When does open", "when does close", "how long can I be in", "are there limited hours"],
+    "patterns":["When is the open", "When is open", "when can I access", "When does open", "when does close", "how long can I be in", "are there limited hours"],
     "responses":["Detailed opening hours coming here soon..."]
     },
-    {"tag":"more informations",
-    "patterns":["Where can I find more infos on", "Can you share more infos on", "I want to know more about", "I am interested in learning more about"],
+    {"tag":"more information",
+    "patterns":["Can you share more infos on", "I want to know more about", "I am interested in learning more about"],
     "responses":["Detailed links coming here soon..."]
     },
     {"tag":"location info",
-    "patterns":["Where can I find", "where is the", "Where is", "what is the location of"],
+    "patterns":["Where can I find", "Where is the", "what is the location of"],
     "responses":["Detailed location infos coming here soon..."]
     },
     {"tag":"contact info",
@@ -68,7 +68,7 @@
     "responses":["The biggest difference between both the campuses is the size. UBCV is significantly larger school than UBCO. UBCV is home to about 60,000 students whereas UBCO is home to about 10,000 students. The rest of the differences stem from the size itself."]
     },
     {"tag":"weather",
-    "patterns":["How is the weather UBC", "Is it cold at UBC", "Is it raining a lot at UBC"],
+    "patterns":["How weather UBC", "Is it cold at UBC", "Is it raining a lot at UBC"],
     "responses":["The weather in summer is pretty warm and dry and it can get pretty cold in the winters."]
     },
     {"tag":"Off-campus Food",

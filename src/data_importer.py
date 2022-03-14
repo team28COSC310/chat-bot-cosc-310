@@ -59,7 +59,7 @@ def load_entities(path):
 
     except FileNotFoundError:
         print("Entities file not found.")
-        return Intents([], [], [])
+        return {}
     
 
 
