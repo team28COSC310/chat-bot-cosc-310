@@ -9,7 +9,7 @@ The gui is mostly based on a tutorial from Youtube: https://youtu.be/RNEcewpVZUQ
 """
 from tkinter import *
 from chatbot import Chat  # the class containing functions needed to generate bot's response
-from test_NER import find_NER
+from NER_func import find_NER
 from PIL import Image, ImageTk
 import json
 

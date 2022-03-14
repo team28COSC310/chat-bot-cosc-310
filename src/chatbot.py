@@ -14,10 +14,9 @@ from nltk.stem import WordNetLemmatizer
 
 from response_model import ChatModel
 from prepare_training_data import build_training_data
-<<<<<<< HEAD
 from data_importer import load_intents, load_entities
 
-from test_NER import find_NER
+from NER_func import find_NER
 from data_importer import load_intents
 from spellchecker import SpellChecker
 
@@ -84,9 +83,9 @@ class Chat:
         Predict the class (intent) of a users' sentence
         '''
 
-        print("Entered:", sentence)
+        # print("Entered:", sentence)
         sentence = self.spellchecker.autocorrect(sentence)
-        print("Interpreted:", sentence)
+        # print("Interpreted:", sentence)
 
         bow = self.bag_words(sentence)
         res = self.chat_model.predict(bow)[0]
