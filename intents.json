@@ -8,16 +8,16 @@
     "responses":["Have a nice day", "I hope I could help, by", "Bye, hope to see you on Campus"]
     },
     {"tag":"opening hours",
-    "patterns":["When is the Univesity open", "when can I access the university"],
+    "patterns":["When is the University open", "when can I access the university", "What are the working hours of the University?"],
     "responses":["The opening hours of the university vary, depending on where you want to go. The Commons are always open if you want to study, why don't you have a look at our website (https://finance-operations.ok.ubc.ca/corm/building-hours/)"]
     },
     {"tag":"semester dates",
     "patterns":["When are the teaching times", "when are there lectures on campus", "When do courses start"],
-    "responses":["Universtity usually starts in September, with exams in december. And the second term starting in january with finals in April."]
+    "responses":["University usually starts in September, with exams in december. And the second term starting in january with finals in April."]
     },
     {"tag":"sports teams",
     "patterns":["Does UBC have sport teams", "What sport teams can I support", "Are there any sports to watch on campus"],
-    "responses":["UBC Okanagans sport teams called HEAT, have football, basketball, volleyball and golf teams for man and woman as well as a softball team"]
+    "responses":["UBC Okanagan's sport teams called HEAT, have football, basketball, volleyball and golf teams for man and woman as well as a softball team"]
     }, 
     {"tag":"gym",
     "patterns":["Is there a gym on campus", "Can I work out at uni", "do you have a gym", "can I play sports on campus"],
@@ -28,7 +28,7 @@
     "responses":["There are varoius places on campus you can study, for example the commons, sunshine cafe, the library or maybe outside when the sun is shining."]
     },
     {"tag":"food",
-    "patterns":["Are there any foodplaces on campus", "What food is there on campus", "What if I am hungry"],
+    "patterns":["Are there any foodplaces on campus", "What food is there on campus", "What if I am hungry", "Where can I eat on campus", "What if I want something to eat"],
     "responses":["The campus offers a variety of cafes and foodplaces, like tim hortons, starbucks or a sushi place. We also have a big dining hall. Check it out here: https://food.ok.ubc.ca"]
     },
     {"tag":"library",
@@ -44,7 +44,7 @@
     "responses":["If you come from further away, it is easist to fly into Kelowna Airport and take a Taxi from there. If you are from Kelowna there are regular buses to UBCO."]
     },
     {"tag":"number of students",
-    "patterns":["How many students does UBCO have", "Number of student at UBC"],
+    "patterns":["How many students does UBCO have", "Number of student at UBC", "How many people study at UBCO"],
     "responses":["UBCO has about 9000 students."]
     },
     {"tag":"other attractions",
@@ -52,15 +52,15 @@
     "responses":["In winters Big white is not far away if you fancy skiing", "It is always nice to hang out at the Lake", "There is a wide variety of activiets offered by recreation, check it out here https://recreation.ok.ubc.ca"]
     },
     {"tag":"application",
-    "patterns":["How can I apply to UBC", "Where can I apply"],
+    "patterns":["How can I apply to UBC", "Where can I apply", "When is the application deadline?", "How to get into UBCO"],
     "responses":["The application deadline to UBC is usually mid January, please find further details here https://you.ubc.ca/applying-ubc/blog/how-to-apply/ubc-application-open/"]
     },
     {"tag":"history",
-    "patterns":["How old is UBC", "Tell me more about the history of UBC"],
+    "patterns":["How old is UBC", "Tell me more about the history of UBC", "Then did UBCO open"],
     "responses":["The Okanagan Campus, was opened in 2005. If you want to know more please take a look here: https://ok.ubc.ca/about/history-and-milestones/"]
     },
     {"tag":"difference UBC Okanagan and Vancouver",
-    "patterns":["Is UBC Okanagan and Vancouver the same", "What is the differnce between UBC Okanagan and Vancouver", "Difference UBCO and UBC Vancouver"],
+    "patterns":["Is UBC Okanagan and Vancouver the same", "What is the difference between UBC Okanagan and Vancouver", "Difference UBCO and UBC Vancouver"],
     "responses":["The biggest difference between both the campuses is the size. UBCV is significantly larger school than UBCO. UBCV is home to about 60,000 students whereas UBCO is home to about 10,000 students. The rest of the differences stem from the size itself."]
     },
     {"tag":"weather",
@@ -72,15 +72,15 @@
     "responses":["The UBC Okanagan campus has multiple off campus dining partners which you can find at https://food.ok.ubc.ca/feed-me/  ."]
     },
      {"tag":"Tutoring ",
-    "patterns":["Does ubco offer tutoring services?", "where can I find tutors at ubco?"],
+    "patterns":["Does ubco offer tutoring services?", "where can I find tutors at ubco?", "I need help with my assignment, who can help me", "I have troubles understanding the material, is there any support for students in such situation"],
     "responses":[" UBCO offers free tutoring services at the student learning hub which you can learn more about at https://students.ok.ubc.ca/academic-success/learning-hub/subject-tutoring/ ."]
     },
      {"tag":"on campus Housing",
-    "patterns":["What kind of housing is availible on campus ?", "where can I live on campus ?"],
+    "patterns":["What kind of housing is available on campus ?", "where can I live on campus ?", "Does UBCO has student residences", "Are there dorms in UBCO"],
     "responses":["UBCO is home to 10 student residences including Cassiar, Kalamalka, Nicola, Purcell, Valhalla, Skeena , Nechako , Similkameen , Lower/Upper Cascades , and Monashee. You can learn more about the different residences at https://okanagan.housing.ubc.ca/residences-rooms/residences/"]
     },
       {"tag":"off campus Housing",
-    "patterns":["What kind of housing is availible off campus ?", "where can I live off campus ?"],
+    "patterns":["What kind of housing is availible off campus ?", "where can I live off campus ?", "How do I rent a room off campus"],
     "responses":["There are plenty of places to rent off campus . Renting on Academy Way is a close option . Buildings such Veda Living , U Buildings , and IVY Hall are a popular choice . "]
     },
      {"tag":"minor",
@@ -92,21 +92,25 @@
     "responses":[" You can get involved on campus by volunteering , getting an on campus job , joining clubs , as well as course unions . Learn more about getting involved at https://students.ok.ubc.ca/involvement-activities/get-involved/  "]
     },
     {"tag":"facts",
-    "patterns":["What are some facts about UBCO ?", "What general information can I get about UBCO ?"],
+    "patterns":["What are some facts about UBCO ?", "What general information can I get about UBCO ?", "Tell me something about UBCO"],
     "responses":["UBC is among the top 20 universities in the world . It has a good ratio of around 1 teacher for every 23 students. 17% of ubco students are international . You can find more ubco facts and information at https://ok.ubc.ca/about/facts-and-figures"]
     },
       {"tag":"Research ",
-    "patterns":["What are some research opportunities at ubco ?, How can I get involved with undergraduate research?"],
+    "patterns":["What are some research opportunities at ubco ?", "How can I get involved with undergraduate research?"],
     "responses":["Research opportunities include health research projects as well as the Tuum Est fund  which provides financial support for student initiatives, conferences, and competitions. Learn more about the fund at https://students.ok.ubc.ca/career-experience/get-experience/undergraduate-research/"]
       },
      {"tag":"Health and Wellness ",
-    "patterns":["What mental health resources are availible to students ? Does ubco offer counselling?"],
+    "patterns":["What mental health resources are availible to students ?","Does ubco offer counselling?", "I feel depressed, can you recommend any resources", "I feel anxious, can someone at UBCO help me with my mental struggles"],
     "responses":["UBCO offers free mental health counselling to students to help them deal with a variety of issues including anxiety , stress , panic, depression, or suicidal thoughts and feelings. Learn more at https://students.ok.ubc.ca/health-wellness/counselling-mental-health/ "]
       },
      {"tag":"Degree planning ",
-    "patterns":["How can I see which courses I need for my degree?", "Where can I get help with planning my degree?"],
+    "patterns":["How can I see which courses I need for my degree?", "Where can I get help with planning my degree?", "How do I know which courses I should take?"],
     "responses":[" The degree navigator which can be found on the ssc website offers guidance on planning your degree .it allows you to view program requirements , View course information as outlined in the UBC Okanagan Academic Calendar , evaluate your progress towards program requirements , and plan hypothetical course scenarios for future sessions. Learn more at https://students.ok.ubc.ca/academic-success/degree-planning/"]
-     }
+     },
+    {"tag": "Safety",
+    "patterns": ["Then I am on campus I do not feel safe walking alone at night, what do I do?", "I do not feel secure on campus, I am worried about stealing or other crimes,  what do I do?", "I am worried about safety protocols on campus, how do I find out whether students are protected enough?", "Please, tell me how UBCO ensures safety and security on campus, I am worried about possible crimes"],
+    "responses": ["UBCO treats the safety of its students as its top priority. There are always guards monitoring the situation on campus. You can see them near the administration building. UBCO also offers Safewalk Services in case you are afraid of walking alone at night. To find out more, visit: https://security.ok.ubc.ca/safewalk/. If you are concerned about general security or want to report a crime, visit: https://security.ok.ubc.ca/"]
+    }
     
     ]}
     

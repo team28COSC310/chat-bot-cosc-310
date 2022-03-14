@@ -1,6 +1,10 @@
 [MASTER]
 disable=
     C0103, #invalid-name
+    C0301, #line-too-long
+    C0303, #trailing-whitespace
+    E0611, #no-name-in-module
+    E0401, #import-error
     W1514, #unspecified-encoding
     W0106, #expression-not-assigned
     R0903, #too-few-public-methods
