@@ -27,7 +27,7 @@ class SpellChecker:
         return "".join([
             self._spell.word_segmentation(term, max_edit_distance=1).corrected_string + " "
             for term in
-            input_sentence.split()
+            input_sentence.lower().split()
         ])
 
     def suggestion(self, input_term: str):
@@ -35,13 +35,13 @@ class SpellChecker:
         Returns the top suggested correction for a given input word.
         If nothing is found the original word is returned.
         """
-        suggestions = self._spell.lookup(input_term, Verbosity.TOP, max_edit_distance=2)
+        suggestions = self._spell.lookup(input_term.lower(), Verbosity.TOP, max_edit_distance=2)
         if len(suggestions) > 0:
             return suggestions[0].term
 
         return input_term
 
-    def autocorrect(self, input_sentence):
+    def autocorrect(self, input_sentence: str):
         """
         Attempts to take a sentence and split any conjoined words and correct any spelling errors
         Returns the corrected sentence.

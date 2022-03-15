@@ -8,6 +8,8 @@ Nicholas Brown, Jonathan Chou, Omar Ishtaiwi, Niklas Tecklenburg and Elizaveta Z
 from email import message_from_binary_file
 import random
 import json
+from typing import Union
+
 import pickle
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -53,7 +55,7 @@ class Chat:
         # Load the Chatbot model, if there are no weights available, train the model
         try:
             self.chat_model.load_model_weights('./model_weights/weights.h5')
-        except FileNotFoundError:
+        except (FileNotFoundError, ValueError):
             self.chat_model.train(self.train_x, self.train_y, './model_weights/weights.h5')
 
     def preprocess_sentence(self, sentence):
@@ -83,9 +85,7 @@ class Chat:
         Predict the class (intent) of a users' sentence
         '''
 
-        # print("Entered:", sentence)
         sentence = self.spellchecker.autocorrect(sentence)
-        # print("Interpreted:", sentence)
 
         bow = self.bag_words(sentence)
         res = self.chat_model.predict(bow)[0]
