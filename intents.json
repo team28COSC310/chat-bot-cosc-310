@@ -4,7 +4,7 @@
     "responses": ["Sorry, this text could not be recognized.","I could not understand that. Could you rephrase that?", "Please enter a recognizable phrase.", "Could you say something different?", "Text not recognized."]
     },
     {"tag": "greetings",
-    "patterns":["hello", "hey", "hi", "good day", "greetings", "whats up", "how is it going?"],
+    "patterns":["hello", "hey", "hi", "good day", "greetings", "whats up", "how is it going?", "Hi"],
     "responses": ["Hello, I am the UBCO Chatbot", "Hi, how can I help you today?", "Hello from UBCO, how can I help you?"]
     },
     {"tag":"farewell",
