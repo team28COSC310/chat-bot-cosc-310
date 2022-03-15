@@ -1,17 +1,14 @@
 import socket
 import sys
-import pickle
 import json
 import time
 
 from chatbot import Chat
-from response_model import ChatModel
-from prepare_training_data import build_training_data
-from data_importer import Intents, load_intents
 from NER_func import find_NER
 
 chat = Chat()
-intents = json.loads(open("../intents.json").read())
+with open("../intents.json") as file:
+    intents = json.loads(file.read())
 
 print("Ready to Chat")
 
