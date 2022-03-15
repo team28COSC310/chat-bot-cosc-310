@@ -35,7 +35,7 @@ class ChatModel:
         """
         sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
         self.model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
-        self.model.fit(np.array(train_x), np.array(train_y), epochs=500, batch_size=5, verbose=1)
+        self.model.fit(np.array(train_x), np.array(train_y), epochs=750, batch_size=5, verbose=1)
 
         # Note:
         # I could not run the chatbot while saving weights here,

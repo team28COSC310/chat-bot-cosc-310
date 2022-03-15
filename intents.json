@@ -4,7 +4,7 @@
     "responses": ["Sorry, this text could not be recognized.","I could not understand that. Could you rephrase that?", "Please enter a recognizable phrase.", "Could you say something different?", "Text not recognized."]
     },
     {"tag": "greetings",
-    "patterns":["hello", "hey", "hi", "good day", "greetings", "whats up", "how is it going?"],
+    "patterns":["hello", "hey", "hi", "good day", "greetings", "whats up", "how is it going?", "Hi"],
     "responses": ["Hello, I am the UBCO Chatbot", "Hi, how can I help you today?", "Hello from UBCO, how can I help you?"]
     },
     {"tag":"farewell",
@@ -12,8 +12,20 @@
     "responses":["Have a nice day!", "I hope that helped, bye.", "Bye, hope to see you on Campus!"]
     },
     {"tag":"opening hours",
-    "patterns":["When University open", "when can access the university", "What are working hours", "opening hours"],
-    "responses":["The opening hours of the university vary, depending on where you want to go. The Commons are always open if you want to study, why don't you have a look at our website? (https://finance-operations.ok.ubc.ca/corm/building-hours/)"]
+    "patterns":["When open", "When is open", "when can access", "When does open", "What are working hours", "when does close", "how long can I be in","opening hours"],
+    "responses":["Detailed opening hours coming here soon..."]
+    },
+    {"tag":"more information",
+    "patterns":["Can you share more infos on", "I want to know more about", "I am interested in learning more about"],
+    "responses":["Detailed links coming here soon..."]
+    },
+    {"tag":"location info",
+    "patterns":["Where can I find", "Where is the", "what is the location of"],
+    "responses":["Detailed location infos coming here soon..."]
+    },
+    {"tag":"contact info",
+    "patterns":["How can I reach out to", "I have questions regarding", "Can you give me the contact of", "Who would I have to reach out to with questions regarding"],
+    "responses":["Detailed contact infos coming here soon..."]
     },
     {"tag":"semester dates",
     "patterns":["When teaching times", "when lectures on campus", "When do courses start", "semester date dates starts"],
@@ -34,14 +46,6 @@
     {"tag":"food",
     "patterns":["Are there any food places on campus", "What food is there on campus", "What if I am hungry", "Where can I eat on campus", "What if I want something to eat"],
     "responses":["The campus offers a variety of cafes and food places, like Tim Hortons, Starbucks or the sushi place. We also have a big dining hall. Check it out here: https://food.ok.ubc.ca"]
-    },
-    {"tag":"library",
-    "patterns":["What are the opening hours of the library", "When does the library open", "When does the library close"],
-    "responses":["The library is open from 8 am to 8 pm weekdays and from 10 am to 6 pm on weekends."]
-    },
-    {"tag":"location",
-    "patterns":["Where is UBC located", "Where are you",  "Where is it", "location"],
-    "responses":["UBCO is located at Lake Okanagan, near Kelowna."]
     },
     {"tag":"transfer",
     "patterns":["How can I get to UBC", "How can I get to UBCO", "How to get to Kelowna from UBC", "travel to campus"],
@@ -68,8 +72,8 @@
     "responses":["The biggest difference between both the campuses is the size. UBCV is significantly larger school than UBCO. UBCV is home to about 60,000 students whereas UBCO is home to about 10,000 students. The rest of the differences stem from the size itself."]
     },
     {"tag":"weather",
-    "patterns":["How is the weather UBC", "Is it cold at UBC", "Does it rain a lot at UBC"],
-    "responses":["The weather in summer is pretty warm and dry and it is fairly cold in the winters."]
+    "patterns":["How weather UBC", "Is it cold at UBC", "Is it raining a lot at UBC"],
+    "responses":["The weather in summer is pretty warm and dry and it can get pretty cold in the winters."]
     },
     {"tag":"Off-campus Food",
     "patterns":["where eat off-campus ?", "where can use student meal plan off-campus?", "off-campus food", "off campus food"],

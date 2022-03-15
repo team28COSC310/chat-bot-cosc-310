@@ -17,7 +17,6 @@ def build_training_data(intents):
     """
     Build the training data set from the intents file
     """
-
     words = lemmatize_words(words=intents.words)
     classes = sorted(set(intents.classes))
     documents = intents.documents

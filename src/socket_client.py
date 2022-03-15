@@ -8,6 +8,7 @@ from chatbot import Chat
 from response_model import ChatModel
 from prepare_training_data import build_training_data
 from data_importer import Intents, load_intents
+from NER_func import find_NER
 
 chat = Chat()
 
@@ -26,7 +27,8 @@ while True:
     print('ChatBot: ' + message)
     
     ints = chat.predict_class(message)
-    response = chat.get_response(ints, intents)
+    ents = find_NER(message)
+    response = chat.get_response(ints, intents, ents)
     print("YouBot: " + response)
     
     cli_sock.sendall(response.encode('utf-8'))
