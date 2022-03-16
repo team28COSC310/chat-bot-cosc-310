@@ -109,7 +109,7 @@ class ChatApplication:
         '''
         self.chat_area.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
-    def _on_enter_pressed(self):
+    def _on_enter_pressed(self, event):
         '''
         Then the user enters the message, get their message and display the question and answer in the chat area
         '''
