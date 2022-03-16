@@ -9,6 +9,8 @@ numpy = "*"
 tensorflow = "*"
 keras = "*"
 pillow = "*"
+spacy = "*"
+symspellpy = "*"
 
 [dev-packages]
 pylint = "*"

@@ -1,21 +1,18 @@
 import socket
 import sys
-import pickle
 import json
 import time
 
 from chatbot import Chat
-from response_model import ChatModel
-from prepare_training_data import build_training_data
-from data_importer import Intents, load_intents
 from NER_func import find_NER
 
 chat = Chat()
 
 print("Ready to Chat")
-intents = json.loads(open("../intents.json").read())
+with open("../intents.json") as file:
+    intents = json.loads(file.read())
 
-#connect to server
+# connect to server
 cli_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 cli_sock.connect((sys.argv[1], int(sys.argv[2])))
 
@@ -25,16 +22,11 @@ cli_sock.sendall(response.encode('utf-8'))
 while True:
     message = cli_sock.recv(1024).decode('utf-8')
     print('ChatBot: ' + message)
-    
+
     ints = chat.predict_class(message)
     ents = find_NER(message)
     response = chat.get_response(ints, intents, ents)
     print("YouBot: " + response)
-    
+
     cli_sock.sendall(response.encode('utf-8'))
     time.sleep(4)
-
-print(out)
-cli_sock.close()
-
-

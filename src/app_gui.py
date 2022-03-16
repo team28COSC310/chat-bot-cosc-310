@@ -7,11 +7,11 @@ Nicholas Brown, Jonathan Chou, Omar Ishtaiwi, Niklas Tecklenburg and Elizaveta Z
 Acknowledgments:
 The gui is mostly based on a tutorial from Youtube: https://youtu.be/RNEcewpVZUQ
 """
-from tkinter import *
+import json
+from tkinter import Tk, Label, Canvas, Scrollbar, Entry, Button, END, RIGHT
+from PIL import Image, ImageTk
 from chatbot import Chat  # the class containing functions needed to generate bot's response
 from NER_func import find_NER
-from PIL import Image, ImageTk
-import json
 
 # all colors used in the gui
 BLACK = "#151515"
@@ -25,7 +25,8 @@ FONT_HIGHLIGHT = ("Roboto", 14, "bold")
 FONT_MAIN = ("Roboto", 14)
 
 # Intents file, for bot to retrieve answers from it
-INTENTS = json.loads(open("../intents.json").read())
+with open("../intents.json") as file:
+    INTENTS = json.loads(file.read())
 
 # an array to guarantee proper alignment of responses
 DIAL_TAG = []

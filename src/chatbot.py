@@ -17,16 +17,15 @@ from prepare_training_data import build_training_data
 from data_importer import load_intents, load_entities
 
 from NER_func import find_NER
-from data_importer import load_intents
 from spellchecker import SpellChecker
 
+# 5 versions of apologies in case the bot cannot identify user's request and therefore cannot reply
+APOLOGIES = ["Sorry, I do not understand you. Please, try rephrasing the question using synonyms or simpler words",
+             "Sorry, I cannot seem to comprehend what you are saying. Try asking me about the dining places, or the weather",
+             "My apologies, I do not understand your question. Try asking me about the sport events at campus or UBCO history",
+             "I apologize for the incovenience, but I do not understand you. \nPlease, try rephrasing your request. \nFor example instead of asking 'Where can I get some food on campus?' ask 'I am hungry, where do I go?'",
+             "I am very sorry but I do not understand you. \nCheck out UBCO FAQ, you might find an answer to your question there: https://students.ok.ubc.ca/academic-success/academic-advising/frequently-asked-questions/"]
 
-#5 versions of apologies in case the bot cannot identify user's request and therefore cannot reply
-APOLOGIES=["Sorry, I do not understand you. Please, try rephrasing the question using synonyms or simpler words",
-           "Sorry, I cannot seem to comprehend what you are saying. Try asking me about the dining places, or the weather",
-           "My apologies, I do not understand your question. Try asking me about the sport events at campus or UBCO history",
-           "I apologize for the incovenience, but I do not understand you. \nPlease, try rephrasing your request. \nFor example instead of asking 'Where can I get some food on campus?' ask 'I am hungry, where do I go?'",
-           "I am very sorry but I do not understand you. \nCheck out UBCO FAQ, you might find an answer to your question there: https://students.ok.ubc.ca/academic-success/academic-advising/frequently-asked-questions/"]
 
 class Chat:
     """
@@ -39,7 +38,7 @@ class Chat:
         self.intents = load_intents("../intents.json")
         self.spellchecker = SpellChecker()
         self.train_x, self.train_y = build_training_data(self.intents)
-        
+
         self.entity_infos = load_entities('../entity_infos.json')
 
         self.chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
@@ -83,9 +82,7 @@ class Chat:
         Predict the class (intent) of a users' sentence
         '''
 
-        # print("Entered:", sentence)
-        # sentence = self.spellchecker.autocorrect(sentence)
-        # print("Interpreted:", sentence)
+        sentence = self.spellchecker.autocorrect(sentence)
 
         bow = self.bag_words(sentence)
         res = self.chat_model.predict(bow)[0]
@@ -105,39 +102,38 @@ class Chat:
         if not intents_list:
             return random.choice(APOLOGIES)
         tag = intents_list[0]['intent']
-        
-        
+
         if tag in ["opening hours", "more information", "location info", "contact info"]:
             ent_matches = []
             for ent in ents:
                 if ent in self.entity_infos.keys():
                     ent_matches.append(ent)
-            if len(ent_matches)>0:
+            if len(ent_matches) > 0:
                 entity = random.choice(ent_matches)
             else:
                 entity = []
-                
+
             if tag == "opening hours":
-                if entity ==[]:
-                    result = f"I am really sorry but I do not have infos on the opening hours."
+                if not entity:
+                    result = "I am really sorry but I do not have infos on the opening hours."
                 else:
                     info = self.entity_infos[entity]["opening hours"]
                     result = f"The opening hours for the {entity} are {info}."
-            elif tag =="more information":
-                if entity ==[]:
-                    result = f"I am really sorry but I do not have further infos on it"
+            elif tag == "more information":
+                if not entity:
+                    result = "I am really sorry but I do not have further infos on it"
                 else:
                     info = self.entity_infos[entity]["link"]
                     result = f"You can find more infos on the {entity} here: {info}"
             elif tag == "location info":
-                if entity ==[]:
-                    result = f"I am really sorry but I do not have location infos for it."
+                if not entity:
+                    result = "I am really sorry but I do not have location infos for it."
                 else:
                     info = self.entity_infos[entity]["location"]
                     result = f"The {entity} is located here: {info}"
-            elif tag =="contact info":
-                if entity ==[]:
-                    result = f"I am really sorry but I do not have contact infos."
+            elif tag == "contact info":
+                if not entity:
+                    result = "I am really sorry but I do not have contact infos."
                 else:
                     info = self.entity_infos[entity]["contact"]
                     result = f"You can reach out to the {entity} here: {info}"

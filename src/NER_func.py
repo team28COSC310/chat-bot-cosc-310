@@ -22,4 +22,3 @@ def find_NER(raw_text):
         if word not in text_ents and word in FIXED_NE:
             text_ents.append(word)
     return text_ents
-

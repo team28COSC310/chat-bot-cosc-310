@@ -1,7 +1,7 @@
 # chat-bot-cosc-310
 
 
-## Development Installation
+## Installation
 1. Ensure you have the latest version of [Python](https://www.python.org/downloads/) installed.
 
 2. Install `pipenv` ([Pipenv Documentation](https://pypi.org/project/pipenv/))
@@ -11,7 +11,8 @@
 3. Download the project dependencies
     1. Open the command terminal in the project root directory
     2. Run `pipenv shell` to start the virtual environment
-    3. Run `pipenv update --dev` to download the project's dependencies
+    3. Run `pipenv update` or `pipenv update --dev` (developers) to download the project's dependencies
+    4. Run `pipenv run python -m spacy download en_core_web_sm` to download spacy's dependencies
     
 ## Running Unit Tests
 
