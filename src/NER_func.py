@@ -6,7 +6,7 @@ import spacy
 nlp = spacy.load("en_core_web_sm")
 #Whether something is recognized as a named entity or not depends on a context.
 # This is the list of words which are always recognized as named entities
-FIXED_NE=['ubc', 'ubco', 'bc', 'gym', 'library', 'commons', 'eme', 'hangar', 'Front Desk', 'Sunshine', 'Starbucks']
+FIXED_NE=['ubc', 'ubco', 'bc', 'gym', 'library', 'commons', 'eme']
 def find_NER(raw_text):
     '''
     Accepts raw (unprocessed, with initial capitalization) text.

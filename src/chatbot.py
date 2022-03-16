@@ -84,7 +84,7 @@ class Chat:
         '''
 
         # print("Entered:", sentence)
-        sentence = self.spellchecker.autocorrect(sentence)
+        # sentence = self.spellchecker.autocorrect(sentence)
         # print("Interpreted:", sentence)
 
         bow = self.bag_words(sentence)
@@ -119,25 +119,25 @@ class Chat:
                 
             if tag == "opening hours":
                 if entity ==[]:
-                    result = f"I am really sorry but I do not have infos on the opening hours for the {random.choice(ents)}"
+                    result = f"I am really sorry but I do not have infos on the opening hours."
                 else:
                     info = self.entity_infos[entity]["opening hours"]
                     result = f"The opening hours for the {entity} are {info}."
             elif tag =="more information":
                 if entity ==[]:
-                    result = f"I am really sorry but I do not have further infos on the {random.choice(ents)}"
+                    result = f"I am really sorry but I do not have further infos on it"
                 else:
                     info = self.entity_infos[entity]["link"]
                     result = f"You can find more infos on the {entity} here: {info}"
             elif tag == "location info":
                 if entity ==[]:
-                    result = f"I am really sorry but I do not have location infos for the {random.choice(ents)}"
+                    result = f"I am really sorry but I do not have location infos for it."
                 else:
                     info = self.entity_infos[entity]["location"]
                     result = f"The {entity} is located here: {info}"
             elif tag =="contact info":
                 if entity ==[]:
-                    result = f"I am really sorry but I do not have contact infos {random.choice(ents)}"
+                    result = f"I am really sorry but I do not have contact infos."
                 else:
                     info = self.entity_infos[entity]["contact"]
                     result = f"You can reach out to the {entity} here: {info}"
