@@ -22,6 +22,24 @@ class TestChatModel(unittest.TestCase):
         intents = load_intents("./intents_test.json")
         self.train_x, self.train_y = build_training_data(intents)
 
+    def test_model_input_shape(self):
+        # check that modelinput shape matches the shape of the input vector
+        chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
+        
+        inp_shape = chat_model.model.input_shape[1]
+        expected_inp_shape = len(self.train_x[0])
+        
+        self.assertEqual(inp_shape, expected_inp_shape)
+        
+        
+    def test_model_output_shape(self):
+        # check that modelinput shape matches the shape of the input vector
+        chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
+        
+        out_shape = chat_model.model.output_shape[1]
+        expected_out_shape = len(self.train_y[0])
+        
+        self.assertEqual(out_shape, expected_out_shape)
 
     def test_model_makes_predictions(self):
         # run predictions on the data to see whether the model trains properly and doesnt break (input output shape, ...)
