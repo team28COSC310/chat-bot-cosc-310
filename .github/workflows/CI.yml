@@ -39,10 +39,11 @@ jobs:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-pipenv-${{ hashFiles('**/Pipfile.lock') }}
 
-      # Install project dependencies using Pipenv
+      # Install project dependencies
       - name: Install dependencies
         run: |
           pipenv install --deploy --dev
+          pipenv run python -m spacy download en_core_web_sm
 
       # Run pylint
       # The job will fail if the code has a rating under 8/10
