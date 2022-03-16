@@ -30,6 +30,3 @@ while True:
 
     cli_sock.sendall(response.encode('utf-8'))
     time.sleep(4)
-
-print(out)
-cli_sock.close()

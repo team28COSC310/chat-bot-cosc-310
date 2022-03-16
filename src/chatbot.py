@@ -17,7 +17,6 @@ from prepare_training_data import build_training_data
 from data_importer import load_intents, load_entities
 
 from NER_func import find_NER
-from data_importer import load_intents
 from spellchecker import SpellChecker
 
 # 5 versions of apologies in case the bot cannot identify user's request and therefore cannot reply
@@ -83,9 +82,7 @@ class Chat:
         Predict the class (intent) of a users' sentence
         '''
 
-        # print("Entered:", sentence)
-        # sentence = self.spellchecker.autocorrect(sentence)
-        # print("Interpreted:", sentence)
+        sentence = self.spellchecker.autocorrect(sentence)
 
         bow = self.bag_words(sentence)
         res = self.chat_model.predict(bow)[0]
@@ -118,25 +115,25 @@ class Chat:
 
             if tag == "opening hours":
                 if not entity:
-                    result = f"I am really sorry but I do not have infos on the opening hours."
+                    result = "I am really sorry but I do not have infos on the opening hours."
                 else:
                     info = self.entity_infos[entity]["opening hours"]
                     result = f"The opening hours for the {entity} are {info}."
             elif tag == "more information":
                 if not entity:
-                    result = f"I am really sorry but I do not have further infos on it"
+                    result = "I am really sorry but I do not have further infos on it"
                 else:
                     info = self.entity_infos[entity]["link"]
                     result = f"You can find more infos on the {entity} here: {info}"
             elif tag == "location info":
                 if not entity:
-                    result = f"I am really sorry but I do not have location infos for it."
+                    result = "I am really sorry but I do not have location infos for it."
                 else:
                     info = self.entity_infos[entity]["location"]
                     result = f"The {entity} is located here: {info}"
             elif tag == "contact info":
                 if not entity:
-                    result = f"I am really sorry but I do not have contact infos."
+                    result = "I am really sorry but I do not have contact infos."
                 else:
                     info = self.entity_infos[entity]["contact"]
                     result = f"You can reach out to the {entity} here: {info}"
