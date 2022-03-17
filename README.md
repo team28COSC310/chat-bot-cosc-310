@@ -37,29 +37,29 @@ Run `python chatbot_run.py` to start the application.
 
     **Snippet:**
     
-![NER snippet](documentation/snippets/NER_example.png)
+    ![NER snippet](documentation/snippets/NER_example.png)
 
 - Spellchecker using symspellpy. The file `spellchecker.py` provides the class which splits the conjoined words and corrects minor spelling mistakes. The file accepts raw text and returns the corrected version. Later, this corrected message is used to get the response from the bot. The bot gives more meaningful responses to the sentences which went through spell checking (as opposed to misspelled sentences which did not go through it), because it helps standardize the type of requests the bout usually receives.
 
     **Snippet with spellchecking disabled:**
     
-![Spellchecking disabled](documentation/snippets/Spell_disabled.png)
+    ![Spellchecking disabled](documentation/snippets/Spell_disabled.png)
 
-**Snippet with spellchecking enabled:**
+    **Snippet with spellchecking enabled:**
 
-![Spellchecking enabled](documentation/snippets/Spell_enabled.png)
+    ![Spellchecking enabled](documentation/snippets/Spell_enabled.png)
 
 - Graphical user interface using tkinter in Python. The file `app_gui.py` creates a graphical interface for the chatbot which opens in a separate window. The graphical interface improves user experience by providing an intuitive way of talking to a bot.
 
-**Snippet:**
+    **Snippet:**
 
-![Gui interface](documentation/snippets/gui_example.png)
+    ![Gui interface](documentation/snippets/gui_example.png)
 
 - Sockets allow the bot to talk to itself. The files `socket_client.py` and `socket_server.py` contain the implementation of sockets, using the socket module in Python.
 
-**Snippet:**
+    **Snippet:**
 
-![Socket snippet](documentation/snippets/socket_example.png)
+    ![Socket snippet](documentation/snippets/socket_example.png)
 
 
 
