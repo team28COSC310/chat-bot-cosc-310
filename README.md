@@ -55,7 +55,7 @@ Run `python chatbot_run.py` to start the application.
 
     ![Gui interface](documentation/snippets/gui_example.png)
 
-- Sockets allow the bot to talk to itself. The files `socket_client.py` and `socket_server.py` contain the implementation of sockets, using the socket module in Python.
+- Sockets allow the bot to interact with other bots (or itself). The files `socket_client.py` and `socket_server.py` contain the implementation of TCP sockets, using the socket module in Python. These allow our bot to play either the server or the client role when interacting with other bots, that are able to send and receive messages using TCP connections.
 
     **Snippet:**
 
