@@ -1,5 +1,5 @@
 # chat-bot-cosc-310
-
+The purpose of this chatbot is to help students and interested people to navigate around and get information about UBCO, like opening hours locations but also infor on the application process. By this the enables the user to easily get access to the information about UBCO he/she is looking for.
 
 ## Installation
 1. Ensure you have the latest version of [Python](https://www.python.org/downloads/) installed.
