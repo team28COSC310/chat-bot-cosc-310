@@ -4,7 +4,7 @@ import sys
 
 sys.path.append(os.path.join(sys.path[0], '../src'))
 
-from src.translation import get_language, translate_from_en, translate_to_en, translate
+from translation import get_language, translate_from_en, translate_to_en, translate
 
 
 class TestTranslation(unittest.TestCase):
