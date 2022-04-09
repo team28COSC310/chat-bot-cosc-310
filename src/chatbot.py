@@ -19,6 +19,7 @@ from data_importer import load_intents, load_entities
 from NER_func import find_NER
 from spellchecker import SpellChecker
 from translation import translate_to_en, get_language, translate_from_en
+from directions import directions
 
 # 5 versions of apologies in case the bot cannot identify user's request and therefore cannot reply
 APOLOGIES = ["Sorry, I do not understand you. Please, try rephrasing the question using synonyms or simpler words",
@@ -44,6 +45,8 @@ class Chat:
 
         self.chat_model = ChatModel(len(self.train_x[0]), len(self.train_y[0]))
 
+        self.giving_directions = False
+
         with(open("pickle/words.pkl", "rb")) as word_file:
             self.words = pickle.load(word_file)
 
@@ -53,7 +56,7 @@ class Chat:
         # Load the Chatbot model, if there are no weights available, train the model
         try:
             self.chat_model.load_model_weights('./model_weights/weights.h5')
-        except FileNotFoundError:
+        except (FileNotFoundError, ValueError):
             self.chat_model.train(self.train_x, self.train_y, './model_weights/weights.h5')
 
     def preprocess_sentence(self, sentence):
@@ -101,12 +104,18 @@ class Chat:
         return return_list
 
     def get_response(self, intents_list, intents_json, ents, msg):
-        '''
+        """
         Generate a response of the bot, given the probable intents of a users and the list of all intents
-        '''
+        """
+        if self.giving_directions:
+            self.giving_directions = False
+            return directions(origin=msg, destination="University of British Columbia Okanagan")
+
         if not intents_list:
             return random.choice(APOLOGIES)
         tag = intents_list[0]['intent']
+
+        self.giving_directions = tag in ['Directions']
 
         result = "I am sorry, but I do not have any information on that."
         if tag in ["opening hours", "more information", "location info", "contact info"]:

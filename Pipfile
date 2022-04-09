@@ -12,6 +12,8 @@ pillow = "*"
 spacy = "*"
 symspellpy = "*"
 googletrans = "==3.1.0a0"
+googlemaps = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 pylint = "*"

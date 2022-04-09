@@ -118,6 +118,10 @@
     {"tag": "Safety",
     "patterns": ["Then I am on campus I do not feel safe walking alone at night, what do I do?", "I am worried about stealing theft robbed robbery or other crimes", "worried about safety protocols on campus, students are protected enough?", "how UBCO ensures safety and security on campus"],
     "responses": ["UBCO treats the safety of its students as its top priority. There are always security guards monitoring the situation on campus. You can see them near the administration building. UBCO also offers Safewalk Services in case you are afraid of walking alone at night. To find out more, visit: https://security.ok.ubc.ca/safewalk/. If you are concerned about general security or want to report a crime, visit: https://security.ok.ubc.ca/"]
+    },
+    {"tag":  "Directions",
+     "patterns": ["Give me directions to get to UBCO", "Directions to UBCO", "Directions to Campus"],
+     "responses": ["Please provide your current location"]
     }
     ]}
     
