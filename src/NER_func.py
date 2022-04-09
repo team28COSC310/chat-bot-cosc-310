@@ -12,10 +12,10 @@ FIXED_NE = ['ubc', 'ubco', 'bc', 'gym', 'library', 'commons', 'eme']
 
 
 def find_NER(raw_text):
-    '''
+    """
     Accepts raw (unprocessed, with initial capitalization) text.
     Returns an array of lowercased Named entities found in text as strings
-    '''
+    """
 
     english_text = translate_to_en(raw_text)
 
