@@ -25,7 +25,7 @@ while True:
 
     ints = chat.predict_class(message)
     ents = find_NER(message)
-    response = chat.get_response(ints, intents, ents)
+    response = chat.get_response(ints, intents, ents, message)
     print("YouBot: " + response)
 
     cli_sock.sendall(response.encode('utf-8'))
