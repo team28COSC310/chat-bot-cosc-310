@@ -18,6 +18,7 @@ from data_importer import load_intents, load_entities
 
 from NER_func import find_NER
 from spellchecker import SpellChecker
+from translation import translate_to_en, get_language, translate_from_en
 
 # 5 versions of apologies in case the bot cannot identify user's request and therefore cannot reply
 APOLOGIES = ["Sorry, I do not understand you. Please, try rephrasing the question using synonyms or simpler words",
@@ -82,6 +83,10 @@ class Chat:
         Predict the class (intent) of a users' sentence
         '''
 
+        # Translate to english
+        sentence = translate_to_en(sentence)
+
+        # Spellchecking
         sentence = self.spellchecker.autocorrect(sentence)
 
         bow = self.bag_words(sentence)
@@ -95,7 +100,7 @@ class Chat:
             return_list.append({'intent': self.classes[r[0]], 'probability': str(r[1])})
         return return_list
 
-    def get_response(self, intents_list, intents_json, ents):
+    def get_response(self, intents_list, intents_json, ents, msg):
         '''
         Generate a response of the bot, given the probable intents of a users and the list of all intents
         '''
@@ -103,6 +108,7 @@ class Chat:
             return random.choice(APOLOGIES)
         tag = intents_list[0]['intent']
 
+        result = "I am sorry, but I do not have any information on that."
         if tag in ["opening hours", "more information", "location info", "contact info"]:
             ent_matches = []
             for ent in ents:
@@ -143,22 +149,8 @@ class Chat:
                 if i['tag'] == tag:
                     result = random.choice(i['responses'])
                     break
+
+        # Translate
+        result = translate_from_en(result, get_language(msg))
+
         return result
-
-
-if __name__ == '__main__':
-    chat = Chat()
-    with(open("../intents.json")) as intents_file:
-        intents = json.loads(intents_file.read())
-    print("You can start talking to the bot now. If you want to stop the bot, type `stop`")
-    while True:
-        message = input("")
-        if message.lower() == 'stop':
-            break
-        ints = chat.predict_class(message)
-        ents = find_NER(message)
-        # add nouns found in the sentence
-        # nouns = findNN(message)
-        # ents.extend(nouns)
-        res = chat.get_response(ints, intents, ents)
-        print(res)

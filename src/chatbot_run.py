@@ -7,5 +7,6 @@ Nicholas Brown, Jonathan Chou, Omar Ishtaiwi, Niklas Tecklenburg and Elizaveta Z
 
 from app_gui import ChatApplication
 
-app_gui = ChatApplication()
-app_gui.run()
+if __name__ == '__main__':
+    app_gui = ChatApplication()
+    app_gui.run()

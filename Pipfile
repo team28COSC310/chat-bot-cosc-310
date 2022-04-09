@@ -11,6 +11,7 @@ keras = "*"
 pillow = "*"
 spacy = "*"
 symspellpy = "*"
+googletrans = "==3.1.0a0"
 
 [dev-packages]
 pylint = "*"
