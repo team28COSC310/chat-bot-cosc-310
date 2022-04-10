@@ -7,11 +7,17 @@ Nicholas Brown, Jonathan Chou, Omar Ishtaiwi, Niklas Tecklenburg and Elizaveta Z
 Acknowledgments:
 The gui is mostly based on a tutorial from Youtube: https://youtu.be/RNEcewpVZUQ
 """
+import stanza
+stanza.download('en')
+
 import json
 from tkinter import Tk, Label, Canvas, Scrollbar, Entry, Button, END, RIGHT
 from PIL import Image, ImageTk
 from chatbot import Chat  # the class containing functions needed to generate bot's response
 from NER_func import find_NER
+
+nlp = stanza.Pipeline(lang='en', processors='tokenize,sentiment')
+
 
 # all colors used in the gui
 BLACK = "#151515"
@@ -114,7 +120,9 @@ class ChatApplication:
         Then the user enters the message, get their message and display the question and answer in the chat area
         '''
         msg = self.input_entry.get()
-        self._insert_message(msg)
+        doc = nlp(msg)
+        m = msg + "\n sentiment score: " + str(doc.sentences[0].sentiment)
+        self._insert_message(m)
 
     def _insert_message(self, msg):
         '''
