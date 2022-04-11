@@ -121,7 +121,7 @@
     },
     {"tag":  "Directions",
      "patterns": ["Give me directions to get to UBCO", "Directions to UBCO", "Directions to Campus"],
-     "responses": ["Please provide your current location"]
+     "responses": ["Okay, please provide your current location."]
     }
     ]}
     

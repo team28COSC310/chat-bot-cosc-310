@@ -109,7 +109,7 @@ class Chat:
         """
         if self.giving_directions:
             self.giving_directions = False
-            return directions(origin=msg, destination="University of British Columbia Okanagan")
+            return translate_from_en(directions(origin=msg, destination="University of British Columbia Okanagan"), get_language(msg))
 
         if not intents_list:
             return random.choice(APOLOGIES)

@@ -9,6 +9,7 @@ gmaps = googlemaps.Client(key="AIzaSyCM1G81TL4nxyP4p-Ralg0Twza_mtKVphE")
 def directions(origin, destination, departure_time=datetime.now()):
     directions_result = gmaps.directions(origin,
                                          destination,
+                                         mode="transit",
                                          departure_time=departure_time)
 
     try:
